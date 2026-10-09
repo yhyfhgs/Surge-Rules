@@ -253,7 +253,21 @@ The remaining FINAL traffic is intentional:
 
 ## Latest recorded release and open verification
 
-Routing commit `f48f68aeee7e313fad298de2cee7191fd3839619` (academic publishers to
+Routing commit `52753b133521899bdf9026e41d70294bb219bce4` is
+**PUBLISHED_AND_VERIFIED** (2026-10-09): 53 lists, 140,817 source rules,
+5,388 scenario assertions including 2,345 DNS assertions, and 84 adversarial
+assertions. All final release gates passed with actual Country/ASN MMDBs;
+static audit retained only the three existing P3 notices. All 12 changed CDN
+paths were explicitly purged, then all 107 distribution files matched both
+`@main` and the immutable commit; the 12 changed GitHub files matched too.
+Only six existing local external resources were refreshed. All 69 newly added
+rule witnesses matched their expected source lists in running Surge. No profile,
+policy-group or configuration changes were made; 38 configuration-related files
+remained byte-identical. Remote-client refreshes and authenticated AI/payment
+success were not established. ChinaDomain admission remains blocked by its
+resolution-rate gate, as described above.
+
+Earlier routing commit `f48f68aeee7e313fad298de2cee7191fd3839619` (academic publishers to
 Academic) was recorded as **PUBLISHED_AND_VERIFIED** on 2026-09-26. It contained
 53 lists and 140,749 source rules; 5,090 scenario assertions passed, including
 2,232 DNS assertions, as did 84 adversarial assertions. The static gates kept
