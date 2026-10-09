@@ -1,5 +1,58 @@
 # Current routing decisions
 
+## List-only upstream refresh (2026-10-09)
+
+All 53 existing lists were reviewed against 415 freshly verified upstream
+inputs. Six source lists change; names, ordering, policies, modifiers, DNS
+mappings, provider URLs and every user configuration remain unchanged. Existing
+v2 `@main` consumers receive the content on their next successful resource
+refresh; this is not an instant push or an upgrade for old pinned/mixed-list
+profiles.
+
+- AI gains eleven evidenced independent service/tooling domains. `muse.ai` and
+  the existing `limitless.ai` belong to Meta. Current first-party pages, not
+  stale cached product descriptions or acquisition headlines, establish these
+  choices. Manus and Rewind retain AI; Google/Microsoft AI remains with its
+  ecosystem, and model-transfer exceptions are unchanged.
+- Payment gains Paddle hosted checkout, Square payment links and its exact
+  checkout host, and Nuvei's `safecharge.com` family. The old DownloadCDN
+  `cdn.safecharge.com` child is removed so the checkout and 3DS SDK stay together.
+  Documented Paddle/Square/Adyen/Wise sandbox endpoints are included. Neither
+  `paddle.io` nor the `square.site` tenant parent is claimed. Unknown Adyen
+  production-region hosts and issuer ACS domains are not invented.
+- `megapay.nz` is MEGA's own payment session surface, not a general gateway;
+  it follows the existing MEGA DownloadCDN family (including account/API hosts),
+  rather than creating a new session split. Another 38 residual domains
+  follow the refreshed blocking references. Six unowned exact CDN/download
+  hosts are admitted; `fal.media`, `static.gamma.app`, `download.manus.im` and
+  `releases.claude.com` retain AI. Sony's account assets are not an evidenced
+  standalone download exception.
+- ChinaIP admits `43.241.100.0/23`, `163.52.246.0/23` and `2402:7820::/32` after
+  APNIC and full-interval Country-MMDB verification. It withholds new Vietnam
+  and Greek-registered coverage, preserving the old `/48` within the latter
+  scope without re-certifying it. Fresh HK registration supports retaining the
+  existing `103.144.244.0/23` and `2406:840:9680:6666::/64` removed upstream.
+  No hard exclusion or matching parameter changes. Telegram's official set
+  plus its reviewed `/20` is unchanged; Sukka's new Anthropic ASN is already
+  present in AIIP.
+- ChinaDomain remains unchanged: only 229/396 new candidates resolved in its
+  additions-only shadow run (57.8% versus the required 70%). The gate was not
+  lowered, no partial output was installed, and deletion hysteresis was not
+  advanced. A future refresh needs a successful guarded run.
+
+Retained omissions: no aggregate Reject imports, shared-cloud IP/ASN or tenant
+parents, `metaaivm.com`, generic telemetry/CAPTCHA expansion, or partial Firefly
+API/S3 changes without shared-authentication review. Stripe Terminal's local
+reader namespace is not international checkout traffic. Existing historical AI
+telemetry and Payment `online-metrix.net` exceptions remain as-is; this batch
+neither generalizes them nor silently reconciles them with the newer neutral
+component policy. Authenticated AI use, checkout/3DS and every remote client's
+refresh remain separate from static validation and CDN publication.
+
+Current source pins and first-party evidence are in [Sources](../SOURCES.md).
+Batch validation and publication results are recorded in the
+[Changelog](../CHANGELOG.md).
+
 Consolidated on 2026-09-13 against the v2 sources and updated for the
 2026-09-26 upstream refresh. This document retains the
 decisions and unresolved evidence that still affect maintenance. List content,

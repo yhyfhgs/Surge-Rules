@@ -3,6 +3,19 @@
 当前约定见 [现行决策](docs/DECISIONS.md)，操作流程见 [维护手册](docs/MAINTENANCE.md)。
 历史数字只代表对应批次，当前数量以检查输出为准。
 
+## [2026-10-09·仅更新列表] 全上游复核、AI 与支付补漏
+
+- 严格按用户要求：不改任何配置、规则顺序、策略组、DNS 映射或 provider URL，不重建设备配置。53 张现有列表逐项复核，只改 6 张源表及对应 Clash 镜像；规则总数 140,750 → 140,817（+69/−2，净增 67）。工作区原有未提交的设备配置开发保留且不混入发布。
+- 11 个仓库、13 个分支头、415 份固定输入全部重新获取并经 `fetch_locked.py` 校验。342 份字节相同；57 份规则内容变化、13 份仅顺序变化、3 份代码/文档变化；无不可取输入。锁文件仅更新本批复核与 ChinaIP 来源，保留其他未提交元数据。
+- AI 新增 11 个第一方服务/工具域（含 claude.dev、DeepWiki MCP、ClawHub、Dola、ACP、Mozilla.ai）；Muse 加入 Meta，Limitless 从 AI 移到 Meta。Google/Microsoft 的新增参考子域已被本属主覆盖，不重复抄入 AI；模型下载和国内/国际区域例外不变。
+- Payment 新增 8 条：Paddle 默认收银台、Square 短链接和精确 checkout 主机、Nuvei safecharge 会话，以及文档明确的 Paddle/Square/Adyen/Wise 沙箱。`cdn.safecharge.com` 从 DownloadCDN 删除，由 Payment 父域承接。Stripe/PayPal 已有生产网关保持，未引入品牌关键词、支付租户父域、通用验证码或 Stripe 本地读卡器域。
+- ProxyGFW 收录阻断参考中无专属属主的 38 个域。DownloadCDN 新增 6 个精确 CDN/下载主机，另补 MEGA 自有结算 `megapay.nz`，跟随已有 MEGA 账户/API 全域属主，不拆成 Payment/Proxy。通用 RUM、嵌入组件和 Sony 账户静态资源暂不采纳；已有 AI 资源仍归 AI。聚合 Reject 增量不直接导入。
+- ChinaIP 按新 pin `036c097e` 重建，仅接收 APNIC 与实际 MMDB 完整区间均支持 CN 的 `43.241.100.0/23`、`163.52.246.0/23`、`2402:7820::/32`。暂扣 VN/GR 登记的新覆盖；原有 HK 两段按新 RDAP 证据显式保留；所有硬排除和输出参数不变。Telegram 官方 CIDR 加已复核 /20 与现表完全相同；Anthropic 新参考 ASN 已在 AIIP。
+- ChinaDomain 只增不删 shadow：229/396 可解析（57.8%），未达 70% 闸门，整表不动，不采用部分结果、不降低门槛、不推进删除迟滞。后续需重新通过护栏才能刷新此层。
+- 验证：5,388 条场景断言全过（388 场景、2,761 请求，含 2,345 条 DNS）；新增 13 场景/294 断言在旧规则上有 89 条失败。84 条对抗断言通过；原生 Surge、排序、真实 MMDB 关系分析、静态审计和全量 Clash 同源检查执行；静态审计保留 3 项既有 P3，无 P0/P1/P2。发布脚本会在提交前对最终内容重跑全部闸门。
+- 设备配置的四端点 DNS 池与旧公共 Clash 合同的两端点模板不同，直接对设备候选运行该合同会失败；未修改配置或放宽测试。公共合同按维护流程在仓库外生成标准候选，53 provider、140,817 规则与 86 归属见证通过；原设备候选另通过完整场景和原生语法。实际账户登录、支付/3DS 和远端设备刷新不在这些静态验证之内。
+- 发布前状态：**VALIDATED_NOT_PUBLISHED**。生产仍用原有 `@main` URL，下次成功刷新资源即可获取，不需要替换配置；固定旧提交及旧混合列表客户端不自动迁移。
+
 ## [2026-09-28·自有站点直连] fhxgs.cc 整域并入 Domestic
 
 - 用户裁决：自有站点 `fhxgs.cc` 整域走直连，在 Domestic 新增 `DOMAIN-SUFFIX,fhxgs.cc`。此前它没有归属、落 FINAL。经代理出口访问新建子域 `film.confluo.fhxgs.cc` 时，出口侧解析器持续返回 DNS Failed；公共解析（Google、Cloudflare、AliDNS、DNSPod）均能正确解析，问题只在出口侧。

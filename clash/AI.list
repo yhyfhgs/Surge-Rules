@@ -42,6 +42,7 @@ DOMAIN,trae-api-sg.mchost.guru
 DOMAIN-SUFFIX,01.ai
 DOMAIN-SUFFIX,abacus.ai
 DOMAIN-SUFFIX,agent-plugins.org
+DOMAIN-SUFFIX,agentclientprotocol.com
 DOMAIN-SUFFIX,agentskills.io
 DOMAIN-SUFFIX,ai.cloudflare.com
 DOMAIN-SUFFIX,ai.com
@@ -102,6 +103,7 @@ DOMAIN-SUFFIX,clau.de
 DOMAIN-SUFFIX,claude.ai
 DOMAIN-SUFFIX,claude.app
 DOMAIN-SUFFIX,claude.com
+DOMAIN-SUFFIX,claude.dev
 DOMAIN-SUFFIX,claude.new
 DOMAIN-SUFFIX,claude.site
 DOMAIN-SUFFIX,claudemcpclient.com
@@ -109,6 +111,7 @@ DOMAIN-SUFFIX,claudemcpcontent.com
 DOMAIN-SUFFIX,claudepages.dev
 DOMAIN-SUFFIX,claudestudio.com
 DOMAIN-SUFFIX,claudeusercontent.com
+DOMAIN-SUFFIX,clawhub.ai
 DOMAIN-SUFFIX,client-api.arkoselabs.com
 DOMAIN-SUFFIX,cline.bot
 DOMAIN-SUFFIX,clipdrop.co
@@ -147,11 +150,14 @@ DOMAIN-SUFFIX,deepgram.com
 DOMAIN-SUFFIX,deepinfra.com
 DOMAIN-SUFFIX,deepl.com
 DOMAIN-SUFFIX,deepl.net
+DOMAIN-SUFFIX,deepwiki.com
 DOMAIN-SUFFIX,descript.com
 DOMAIN-SUFFIX,devin.ai
 DOMAIN-SUFFIX,diabrowser.com
 DOMAIN-SUFFIX,diabrowser.engineering
 DOMAIN-SUFFIX,dify.ai
+DOMAIN-SUFFIX,dola.com
+DOMAIN-SUFFIX,dreamgen.com
 DOMAIN-SUFFIX,dreamstudio.ai
 DOMAIN-SUFFIX,duck.ai
 DOMAIN-SUFFIX,e2b.dev
@@ -239,7 +245,6 @@ DOMAIN-SUFFIX,lcicollections.org
 DOMAIN-SUFFIX,leonardo.ai
 DOMAIN-SUFFIX,letta.com
 DOMAIN-SUFFIX,librechat.ai
-DOMAIN-SUFFIX,limitless.ai
 DOMAIN-SUFFIX,liquid.ai
 DOMAIN-SUFFIX,litellm.ai
 DOMAIN-SUFFIX,livekit.cloud
@@ -279,10 +284,13 @@ DOMAIN-SUFFIX,monica.im
 DOMAIN-SUFFIX,moonshot.ai
 DOMAIN-SUFFIX,moonshotai.com
 DOMAIN-SUFFIX,moonvalley.com
+DOMAIN-SUFFIX,mozilla.ai
 DOMAIN-SUFFIX,msty.ai
 DOMAIN-SUFFIX,muthos.com
 DOMAIN-SUFFIX,nebius.ai
+DOMAIN-SUFFIX,notegpt.io
 DOMAIN-SUFFIX,nousresearch.com
+DOMAIN-SUFFIX,novelai.net
 DOMAIN-SUFFIX,novita.ai
 DOMAIN-SUFFIX,oaistatic.com
 DOMAIN-SUFFIX,oaistatsig.com
@@ -297,6 +305,7 @@ DOMAIN-SUFFIX,openart.ai
 DOMAIN-SUFFIX,openclaw.ai
 DOMAIN-SUFFIX,opencode.ai
 DOMAIN-SUFFIX,openrouter.ai
+DOMAIN-SUFFIX,openspec.dev
 DOMAIN-SUFFIX,openwebui.com
 DOMAIN-SUFFIX,otter.ai
 DOMAIN-SUFFIX,pangram.com
@@ -311,6 +320,7 @@ DOMAIN-SUFFIX,pi.ai
 DOMAIN-SUFFIX,pika.art
 DOMAIN-SUFFIX,pinecone.io
 DOMAIN-SUFFIX,pixverse.ai
+DOMAIN-SUFFIX,plannotator.ai
 DOMAIN-SUFFIX,poe.com
 DOMAIN-SUFFIX,poecdn.net
 DOMAIN-SUFFIX,pollo.ai

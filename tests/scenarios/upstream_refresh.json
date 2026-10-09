@@ -1,0 +1,248 @@
+[
+  {
+    "name": "refresh_20261009_ai_omissions",
+    "desc": "补齐独立 AI 第一方服务、文档和工具域，保持既有会话归属",
+    "requests": [
+      {"host": "claude.dev"},
+      {"host": "agentclientprotocol.com"},
+      {"host": "clawhub.ai"},
+      {"host": "deepwiki.com"},
+      {"host": "mcp.deepwiki.com"},
+      {"host": "www.dola.com"},
+      {"host": "ciciai.com"},
+      {"host": "dreamgen.com"},
+      {"host": "www.mozilla.ai"},
+      {"host": "notegpt.io"},
+      {"host": "cdn.notegpt.io"},
+      {"host": "docs.novelai.net"},
+      {"host": "openspec.dev"},
+      {"host": "plannotator.ai"},
+      {"host": "rewind.ai"},
+      {"host": "manus.im"},
+      {"host": "download.manus.im"},
+      {"host": "releases.claude.com"},
+      {"host": "static.gamma.app"},
+      {"host": "fal.media"}
+    ],
+    "assert": {"same_policy": true, "policy": "AI", "no_dns_leak": true}
+  },
+  {
+    "name": "refresh_20261009_meta_and_ecosystems",
+    "desc": "Muse 和 Limitless 跟随 Meta；Google 和 Microsoft 新增上游子域已被原属主覆盖",
+    "requests": [
+      {"host": "muse.ai"},
+      {"host": "security.muse.ai"},
+      {"host": "www.limitless.ai"},
+      {"host": "help.limitless.ai"},
+      {"host": "geminiweb-pa.clients.google.com"},
+      {"host": "geminiweb-pa.clients6.google.com"},
+      {"host": "labstailwind.pa.googleapis.com"},
+      {"host": "copilot.cloud.microsoft"},
+      {"host": "cafe.github.com"},
+      {"host": "graph.whatsapp.com"},
+      {"host": "graph.whatsapp.net"}
+    ],
+    "assert": {"same_policy": true, "policy": "Google-X-Meta-MS", "no_dns_leak": true}
+  },
+  {
+    "name": "refresh_20261009_paddle_hosted_checkout",
+    "desc": "Paddle 默认托管收银台和明确记录的沙箱与现有 API、脚本同策略",
+    "requests": [
+      {"host": "pay.paddle.io"},
+      {"host": "sandbox.pay.paddle.io"},
+      {"host": "api.paddle.com"},
+      {"host": "cdn.paddle.com"}
+    ],
+    "assert": {"same_policy": true, "policy": "Payment", "no_dns_leak": true}
+  },
+  {
+    "name": "refresh_20261009_square_payment_links",
+    "desc": "Square 短链接、精确收银台、API 与沙箱维持一条支付会话链",
+    "requests": [
+      {"host": "square.link"},
+      {"host": "sandbox.square.link"},
+      {"host": "checkout.square.site"},
+      {"host": "connect.squareup.com"},
+      {"host": "connect.squareupsandbox.com"},
+      {"host": "web.squarecdn.com"}
+    ],
+    "assert": {"same_policy": true, "policy": "Payment", "no_dns_leak": true}
+  },
+  {
+    "name": "refresh_20261009_nuvei_sdk_checkout",
+    "desc": "Nuvei 收银台和 3DS SDK 同归 Payment，cdn.safecharge.com 不再被下载表抢先命中",
+    "requests": [
+      {"host": "secure.safecharge.com"},
+      {"host": "ppp-test.safecharge.com"},
+      {"host": "cdn.safecharge.com"},
+      {"host": "api.nuvei.com"}
+    ],
+    "assert": {"same_policy": true, "policy": "Payment", "no_dns_leak": true}
+  },
+  {
+    "name": "refresh_20261009_payment_documented_sandboxes",
+    "desc": "只补录文档明确给出的 Adyen 和 Wise 开发环境，不推断未知生产地区域名",
+    "requests": [
+      {"host": "test.adyen.link"},
+      {"host": "checkout.adyen.com"},
+      {"host": "wise-sandbox.com"},
+      {"host": "api.wise-sandbox.com"},
+      {"host": "api-mtls.wise-sandbox.com"},
+      {"host": "api.wise.com"}
+    ],
+    "assert": {"same_policy": true, "policy": "Payment", "no_dns_leak": true}
+  },
+  {
+    "name": "refresh_20261009_residual_blocked_sites",
+    "desc": "最新阻断参考中的无专属属主域进入 ProxyGFW，维基姊妹站保持原会话属主",
+    "requests": [
+      {"host": "www.aidc.com.tw"},
+      {"host": "blue-plus.net"},
+      {"host": "boylove.cc"},
+      {"host": "cangku.moe"},
+      {"host": "www.cpc.com.tw"},
+      {"host": "www.csc.com.tw"},
+      {"host": "dh.net"},
+      {"host": "www.eximbank.com.tw"},
+      {"host": "fuyin116.com"},
+      {"host": "hanime1.com"},
+      {"host": "hanimeone.me"},
+      {"host": "hentaiclub.net"},
+      {"host": "www.icdf.org.tw"},
+      {"host": "ipac.global"},
+      {"host": "javchu.com"},
+      {"host": "www.khc.edu.tw"},
+      {"host": "www.landbank.com.tw"},
+      {"host": "matichon.co.th"},
+      {"host": "www.mirdc.org.tw"},
+      {"host": "missav.ai"},
+      {"host": "missav.live"},
+      {"host": "moeli-desu.com"},
+      {"host": "nationthailand.com"},
+      {"host": "nstc.org.tw"},
+      {"host": "poland.tw"},
+      {"host": "qingse.one"},
+      {"host": "rocmgov.org"},
+      {"host": "tfd.org.tw"},
+      {"host": "www.ttl.com.tw"},
+      {"host": "www.twfhcsec.com.tw"},
+      {"host": "www.tybio.com.tw"},
+      {"host": "vava8.com"},
+      {"host": "www.vscc.org.tw"},
+      {"host": "wallhaven.cc"},
+      {"host": "wikifunctions.org"},
+      {"host": "wikimediafoundation.org"},
+      {"host": "wikispecies.org"},
+      {"host": "xx.net"}
+    ],
+    "assert": {"same_policy": true, "policy": "Proxy", "no_dns_leak": true}
+  },
+  {
+    "name": "refresh_20261009_exact_download_hosts",
+    "desc": "只接收有 CDN/下载参考且未被其他服务占有的精确主机，不扩大至其父域",
+    "requests": [
+      {"host": "assets.singaporeair.com"},
+      {"host": "dl.heycue.io"},
+      {"host": "dma.canyon.com"},
+      {"host": "img.helpnetsecurity.com"},
+      {"host": "img2.helpnetsecurity.com"},
+      {"host": "media.karousell.com"},
+      {"host": "analytics.brew.sh", "note": "继承原 brew.sh 下载属主，不随聚合上游进 Reject"}
+    ],
+    "assert": {"same_policy": true, "policy": "下载", "no_dns_leak": true}
+  },
+  {
+    "name": "refresh_20261009_no_tenant_or_component_expansion",
+    "desc": "支付租户父域、通用测量/安全组件以及未证明绑定的上游候选保持域名阶段 FINAL",
+    "requests": [
+      {"host": "example.square.site", "stage": "domain"},
+      {"host": "unreviewed.paddle.io", "stage": "domain"},
+      {"host": "adyen.link", "stage": "domain"},
+      {"host": "unreviewed.squareupsandbox.com", "stage": "domain"},
+      {"host": "stripe-terminal-local-reader.net", "stage": "domain"},
+      {"host": "metaaivm.com", "stage": "domain"},
+      {"host": "c.go-mpulse.net", "stage": "domain"},
+      {"host": "rum-ingest.us1.signalfx.com", "stage": "domain"},
+      {"host": "ha.aus.vanta.com", "stage": "domain"},
+      {"host": "n.approveit.today", "stage": "domain"},
+      {"host": "static.acm.account.sony.com", "stage": "domain"},
+      {"host": "www.singaporeair.com", "stage": "domain"},
+      {"host": "unreviewed.heycue.io", "stage": "domain"},
+      {"host": "unreviewed.karousell.com", "stage": "domain"},
+      {"host": "pay.paddle.io.example.com", "stage": "domain"},
+      {"host": "child.pay.paddle.io", "stage": "domain"},
+      {"host": "child.checkout.square.site", "stage": "domain"},
+      {"host": "square.link.example.com", "stage": "domain"},
+      {"host": "safecharge.com.example.com", "stage": "domain"},
+      {"host": "claude.dev.example.com", "stage": "domain"},
+      {"host": "muse.ai.example.com", "stage": "domain"},
+      {"host": "limitless.ai.example.com", "stage": "domain"},
+      {"host": "assets.singaporeair.com.example.com", "stage": "domain"},
+      {"host": "child.assets.singaporeair.com", "stage": "domain"},
+      {"host": "wikifunctions.org.example.com", "stage": "domain"}
+    ],
+    "assert": {"policy": "Final"}
+  },
+  {
+    "name": "refresh_20261009_mega_owned_checkout_family",
+    "desc": "MEGA 自有结算与现有账户/API 全域保持下载属主，不误认成独立国际支付网关",
+    "requests": [
+      {"host": "mega.io"},
+      {"host": "mega.nz"},
+      {"host": "mega.co.nz"},
+      {"host": "g.api.mega.co.nz"},
+      {"host": "megapay.nz"}
+    ],
+    "assert": {"same_policy": true, "policy": "下载", "no_dns_leak": true}
+  },
+  {
+    "name": "refresh_20261009_domestic_owners_unchanged",
+    "desc": "国际 AI 和支付补录不改变国内服务或已有直连 CDN 的归属",
+    "requests": [
+      {"host": "doubao.com"},
+      {"host": "clawhub-mirror.com"},
+      {"host": "openapi.alipay.com"},
+      {"host": "alipayobjects.com"},
+      {"host": "pay.weixin.qq.com"},
+      {"host": "tenpay.com"},
+      {"host": "bytehwm.com"},
+      {"host": "cnb.space"},
+      {"host": "registry.npmmirror.com"},
+      {"host": "time.xtracloud.net"},
+      {"host": "360buyimg.com"},
+      {"host": "zhimg.com"}
+    ],
+    "assert": {"policy": "DIRECT", "no_dns_leak": true}
+  },
+  {
+    "name": "refresh_20261009_chinaip_new_and_retained_boundaries",
+    "desc": "登记和真实 MMDB 支持的三段 CN 新增以及原有 HK 保留段首尾仍走直连",
+    "requests": [
+      {"ip": "43.241.100.0"},
+      {"ip": "43.241.101.255"},
+      {"ip": "163.52.246.0"},
+      {"ip": "163.52.247.255"},
+      {"ip": "2402:7820::"},
+      {"ip": "2402:7820:ffff:ffff:ffff:ffff:ffff:ffff"},
+      {"ip": "103.144.244.0"},
+      {"ip": "103.144.245.255"},
+      {"ip": "2406:840:9680:6666::"},
+      {"ip": "2406:840:9680:6666:ffff:ffff:ffff:ffff"},
+      {"ip": "2a04:3e00:1002::1"}
+    ],
+    "assert": {"policy": "DIRECT", "routing_complete": true}
+  },
+  {
+    "name": "refresh_20261009_foreign_chinaip_additions_withheld",
+    "desc": "外国登记的新增覆盖不因上游 CN 地理标签而获直连，不扩大既有保留网段",
+    "requests": [
+      {"ip": "14.241.232.0"},
+      {"ip": "14.241.239.255"},
+      {"ip": "2a04:3e00::"},
+      {"ip": "2a04:3e00:1001::1"},
+      {"ip": "2a04:3e04::1"},
+      {"ip": "2a04:3e07:ffff:ffff:ffff:ffff:ffff:ffff"}
+    ],
+    "assert": {"policy": "Final", "routing_complete": true}
+  }
+]

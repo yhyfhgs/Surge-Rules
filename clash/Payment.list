@@ -5,7 +5,12 @@
 # Topology and matching options: config/routing.json.
 # Sources and review decisions: SOURCES.md.
 
+DOMAIN,checkout.square.site
+DOMAIN,connect.squareupsandbox.com
+DOMAIN,pay.paddle.io
+DOMAIN,sandbox.pay.paddle.io
 DOMAIN,stripe-camo.global.ssl.fastly.net
+DOMAIN,test.adyen.link
 
 DOMAIN-SUFFIX,2checkout.com
 DOMAIN-SUFFIX,2co.com
@@ -60,7 +65,9 @@ DOMAIN-SUFFIX,paypalobjects.com
 DOMAIN-SUFFIX,paysafe.com
 DOMAIN-SUFFIX,plaid.com
 DOMAIN-SUFFIX,recurly.com
+DOMAIN-SUFFIX,safecharge.com
 DOMAIN-SUFFIX,skrill.com
+DOMAIN-SUFFIX,square.link
 DOMAIN-SUFFIX,squarecdn.com
 DOMAIN-SUFFIX,squareup.com
 DOMAIN-SUFFIX,stripe.com
@@ -76,6 +83,7 @@ DOMAIN-SUFFIX,venmo.com
 DOMAIN-SUFFIX,verifone.cloud
 DOMAIN-SUFFIX,verifone.com
 DOMAIN-SUFFIX,visa.com
+DOMAIN-SUFFIX,wise-sandbox.com
 DOMAIN-SUFFIX,wise.com
 DOMAIN-SUFFIX,worldpay.com
 DOMAIN-SUFFIX,xoom.com

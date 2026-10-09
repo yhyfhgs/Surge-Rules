@@ -4,6 +4,7 @@
 
 DOMAIN,afdshield-or.download.prss.microsoft.com
 DOMAIN,assets.byokey.io
+DOMAIN,assets.singaporeair.com
 DOMAIN,azurestackreleases.download.prss.microsoft.com
 DOMAIN,cdn-msp.jmcomic-zzz.one
 DOMAIN,cdn-msp.jmcomic.me
@@ -17,17 +18,22 @@ DOMAIN,clientpatch.blue-protocol.com
 DOMAIN,datastore-main.aws.blue-protocol.com
 DOMAIN,db.download.prss.microsoft.com
 DOMAIN,dl.gl-inet.com
+DOMAIN,dl.heycue.io
+DOMAIN,dma.canyon.com
 DOMAIN,flg-main.aws.blue-protocol.com
 DOMAIN,g-ahpatch-prod.blue-protocol.com
 DOMAIN,gog-cdn-lumen.secure2.footprint.net
 DOMAIN,h-cdn.com
 DOMAIN,image-tc.galaxy.tf
 DOMAIN,images.hibob.com
+DOMAIN,img.helpnetsecurity.com
+DOMAIN,img2.helpnetsecurity.com
 DOMAIN,imgix.net
 DOMAIN,jwpsrv.com
 DOMAIN,masterdata-main.aws.blue-protocol.com
 DOMAIN,mbsuat.download.prss.microsoft.com
 DOMAIN,media-process.hibob.com
+DOMAIN,media.karousell.com
 DOMAIN,msconnect.download.prss.microsoft.com
 DOMAIN,msproductuat.download.prss.microsoft.com
 DOMAIN,myvsuat.download.prss.microsoft.com
@@ -965,7 +971,6 @@ DOMAIN-SUFFIX,cdn.roseperl.com
 DOMAIN-SUFFIX,cdn.royaleapi.com
 DOMAIN-SUFFIX,cdn.runcloud.io
 DOMAIN-SUFFIX,cdn.s7s.ai
-DOMAIN-SUFFIX,cdn.safecharge.com
 DOMAIN-SUFFIX,cdn.sanity.io
 DOMAIN-SUFFIX,cdn.sc.gl
 DOMAIN-SUFFIX,cdn.scalar.com
@@ -2904,6 +2909,7 @@ DOMAIN-SUFFIX,meetupstatic.com
 DOMAIN-SUFFIX,mega.co.nz
 DOMAIN-SUFFIX,mega.io
 DOMAIN-SUFFIX,mega.nz
+DOMAIN-SUFFIX,megapay.nz
 DOMAIN-SUFFIX,melonbooks.akamaized.net
 DOMAIN-SUFFIX,mercdn.net
 DOMAIN-SUFFIX,merlin.fit.vutbr.cz

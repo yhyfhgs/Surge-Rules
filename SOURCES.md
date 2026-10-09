@@ -133,3 +133,51 @@ the Surge application's Sparkle feed URL (`sgupd.com`) and page titles.
 TelegramIP now extends the official CIDR set by that one range. Accepted
 scope and exclusions are in the
 [FINAL monitor review](docs/DECISIONS.md#final-monitor-review).
+
+## 2026-10-09 list-only upstream refresh
+
+All 415 review inputs were fetched at 13 current branch heads across 11
+repositories and independently re-fetched with `fetch_locked.py` verification:
+342 byte-identical, 57 rule-content changes, 13 order-only changes and 3
+code/documentation changes. No tracked path was unavailable. Current immutable
+revisions and hashes are in `routing_review.inputs`; the older `ai_review`
+remains historical evidence, not the latest AI snapshot.
+
+- **AI:** VPSDance `49d0081c`, blackmatrix7 `036c097e`, Sukka `1c454d54` and
+  v2fly `3e4cb549` supplied comparison evidence. First-party Claude, Devin,
+  OpenClaw, ACP, Dola, OpenSpec, Plannotator, Mozilla.ai, NoteGPT, NovelAI and
+  DreamGen pages support eleven previously missing AI service/tooling domains.
+  The live Muse site identifies Meta; its cached search copy still describes
+  the former video product and was not used for ownership. Limitless's own
+  announcement supports moving its existing suffix from AI to Meta.
+- **Payment:** Paddle's hosted-checkout documentation, Square's payment-link
+  response and Nuvei's checkout/Web SDK documentation support new checkout
+  endpoints. Nuvei's `cdn.safecharge.com` leaves DownloadCDN and is absorbed by
+  Payment's `safecharge.com`. Explicitly documented Paddle, Square, Adyen and
+  Wise sandbox endpoints are included; no production Adyen region is inferred.
+  MEGA's official-domain register identifies `megapay.nz` as its own checkout,
+  which follows MEGA's existing DownloadCDN account/session family rather than
+  introducing a Payment or ProxyGFW split.
+- **Residual/download:** blackmatrix7 and Loyalsoldier's current blocking lists
+  supply 38 unowned domain additions; existing Qobuz and service owners remain.
+  Six exact CDN/download hosts come from Sukka, with Repcz corroborating five.
+  Shared measurement, embedded SaaS, Sony account assets and already-owned AI
+  resources do not become download or reject entries merely by aggregation.
+- **ChinaIP:** the new locked blackmatrix7 input is `036c097e`. Fresh APNIC
+  registration and complete actual Country-MMDB coverage support two IPv4 `/23`s
+  and one IPv6 `/32`. Newly introduced Vietnam and Greek-registered coverage is
+  held back; two pre-existing HK ranges removed upstream are explicitly retained
+  with fresh RDAP evidence and unchanged hard exclusions. This produces exactly
+  three new rules, not the thousands suggested by the upstream text diff.
+- **ChinaDomain:** the additions-only shadow run resolved 229/396 candidates
+  (57.8%), below the unchanged 70% gate. No output or state change was adopted.
+  The layer remains at its previous admitted content; upstream removals are not
+  evidence of expiry. No new Reject, regional, AIIP or TelegramIP rule was needed.
+  Telegram's freshly fetched official CIDRs plus the reviewed `/20` exactly
+  equal the existing list.
+
+`sources.lock.json:routing_refresh_20261009` records first-party URLs, observed
+response hashes, IP registration evidence, withheld expansions and the failed
+ChinaDomain admission gate. These mutable reference pages are not claimed to be
+immutable build inputs. No configuration, provider manifest or production URL
+changes belong to this refresh.
