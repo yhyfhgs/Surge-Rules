@@ -282,5 +282,154 @@
         {"host": "httpdns.qcloud.com", "policy": "REJECT", "reason": "HTTPDNS 拦截在最前"}
       ]
     }
+  },
+  {
+    "name": "final_monitor_bounded_academic_first_party",
+    "desc": "有界 FINAL 复核：经第一方网站确认的学术出版、预印本、科研标识及文献检索服务归 Academic；PsyArXiv 重定向与 OSF 会话同属直连。这里只验证归属，不代表机构订阅或校园连接实测成功。",
+    "requests": [
+      {"host": "ojs.aaai.org"},
+      {"host": "aaai.org"},
+      {"host": "pubs.aeaweb.org"},
+      {"host": "aeaweb.org"},
+      {"host": "www.biorxiv.org"},
+      {"host": "www.computer.org"},
+      {"host": "www.connectedpapers.com"},
+      {"host": "www.litmaps.com"},
+      {"host": "docs.litmaps.com"},
+      {"host": "app.litmaps.com"},
+      {"host": "api.litmaps.com"},
+      {"host": "www.medrxiv.org"},
+      {"host": "nber.org"},
+      {"host": "www.nber.org"},
+      {"host": "info.orcid.org"},
+      {"host": "pub.orcid.org"},
+      {"host": "osf.io"},
+      {"host": "api.osf.io"},
+      {"host": "developer.osf.io"},
+      {"host": "peerj.com"},
+      {"host": "journals.physiology.org"},
+      {"host": "psyarxiv.com"},
+      {"host": "www.researchsquare.com"},
+      {"host": "taylorandfrancis.com"},
+      {"host": "developers.zenodo.org"},
+      {"host": "zenodo.org"}
+    ],
+    "assert": {"same_policy": true, "policy": "DIRECT", "no_dns_leak": true}
+  },
+  {
+    "name": "final_monitor_bounded_ai_first_party",
+    "desc": "有界 FINAL 复核：独立 AI 研究与评测产品归 AI；官网明确链接的自有登录、应用、文档及资源域保持同族，不据此扩展第三方认证或遥测平台。",
+    "requests": [
+      {"host": "clerk.braintrust.dev"},
+      {"host": "braintrust.dev"},
+      {"host": "consensus.app"},
+      {"host": "clerk.consensus.app"},
+      {"host": "elicit.com"},
+      {"host": "www.researchrabbit.ai"},
+      {"host": "app.researchrabbit.ai"},
+      {"host": "media.researchrabbit.ai"},
+      {"host": "scite.ai"},
+      {"host": "cdn.scite.ai"},
+      {"host": "docs.scite.ai"},
+      {"host": "open.manus.ai", "note": "官网链接的精确应用主机，不收 manus.ai 父域"},
+      {"host": "manus.im", "note": "现有 Manus 会话归属保持不变"}
+    ],
+    "assert": {"same_policy": true, "policy": "AI", "no_dns_leak": true}
+  },
+  {
+    "name": "final_monitor_bounded_public_developer_services",
+    "desc": "有界 FINAL 复核：经第一方网站确认、无现有专属归属的开发工具与项目协作服务进入 ProxyGFW；不以共享云或进程推断归属，也不声称已验证被墙。",
+    "requests": [
+      {"host": "astral.sh"},
+      {"host": "docs.astral.sh"},
+      {"host": "basecamp.com"},
+      {"host": "codecov.io"},
+      {"host": "www.eclipse.org"},
+      {"host": "www.postgresql.org"},
+      {"host": "docs.pytest.org"},
+      {"host": "pytest.org"}
+    ],
+    "assert": {"same_policy": true, "policy": "Proxy", "no_dns_leak": true}
+  },
+  {
+    "name": "final_monitor_bounded_microsoft_news_exact",
+    "desc": "Microsoft Source 只补精确新闻主机；不恢复 microsoft.com、office.com 或 msn.com 的宽后缀，现有微软下载直连边界不变。",
+    "requests": [
+      {"host": "news.microsoft.com"},
+      {"host": "download.microsoft.com"},
+      {"host": "officecdn.microsoft.com"},
+      {"host": "unknown.microsoft.com", "stage": "domain"},
+      {"host": "child.news.microsoft.com", "stage": "domain"}
+    ],
+    "assert": {
+      "no_dns_leak": true,
+      "per_request": [
+        {"host": "news.microsoft.com", "policy": "Google-X-Meta-MS"},
+        {"host": "download.microsoft.com", "policy": "DIRECT", "reason": "保留 MicrosoftCN 下载范围"},
+        {"host": "officecdn.microsoft.com", "policy": "DIRECT", "reason": "保留 MicrosoftCN 更新范围"},
+        {"host": "unknown.microsoft.com", "policy": "Final", "reason": "不恢复宽父域"},
+        {"host": "child.news.microsoft.com", "policy": "Final", "reason": "新闻主机是 DOMAIN，不是后缀"}
+      ]
+    }
+  },
+  {
+    "name": "final_monitor_bounded_owner_boundaries",
+    "desc": "新增归属的负例：注册域字符串出现在其他域名下不构成归属；精确 Manus 应用主机不得扩展到父域、兄弟或子主机。全部为域名阶段边界断言。",
+    "requests": [
+      {"host": "aaai.org.example.org", "stage": "domain"},
+      {"host": "aeaweb.org.example.org", "stage": "domain"},
+      {"host": "biorxiv.org.example.org", "stage": "domain"},
+      {"host": "computer.org.example.org", "stage": "domain"},
+      {"host": "connectedpapers.com.example.org", "stage": "domain"},
+      {"host": "litmaps.com.example.org", "stage": "domain"},
+      {"host": "medrxiv.org.example.org", "stage": "domain"},
+      {"host": "nber.org.example.org", "stage": "domain"},
+      {"host": "orcid.org.example.org", "stage": "domain"},
+      {"host": "osf.io.example.org", "stage": "domain"},
+      {"host": "peerj.com.example.org", "stage": "domain"},
+      {"host": "physiology.org.example.org", "stage": "domain"},
+      {"host": "psyarxiv.com.example.org", "stage": "domain"},
+      {"host": "researchsquare.com.example.org", "stage": "domain"},
+      {"host": "taylorandfrancis.com.example.org", "stage": "domain"},
+      {"host": "zenodo.org.example.org", "stage": "domain"},
+      {"host": "braintrust.dev.example.org", "stage": "domain"},
+      {"host": "consensus.app.example.org", "stage": "domain"},
+      {"host": "elicit.com.example.org", "stage": "domain"},
+      {"host": "researchrabbit.ai.example.org", "stage": "domain"},
+      {"host": "scite.ai.example.org", "stage": "domain"},
+      {"host": "open.manus.ai.example.org", "stage": "domain"},
+      {"host": "astral.sh.example.org", "stage": "domain"},
+      {"host": "basecamp.com.example.org", "stage": "domain"},
+      {"host": "codecov.io.example.org", "stage": "domain"},
+      {"host": "eclipse.org.example.org", "stage": "domain"},
+      {"host": "postgresql.org.example.org", "stage": "domain"},
+      {"host": "pytest.org.example.org", "stage": "domain"},
+      {"host": "news.microsoft.com.example.org", "stage": "domain"},
+      {"host": "manus.ai", "stage": "domain"},
+      {"host": "unreviewed.manus.ai", "stage": "domain"},
+      {"host": "child.open.manus.ai", "stage": "domain"}
+    ],
+    "assert": {"same_policy": true, "policy": "Final"}
+  },
+  {
+    "name": "final_monitor_bounded_shared_components_and_tenants",
+    "desc": "自有服务归属不得外推到共用云/CDN、文档托管租户、SaaS 追踪或验证码。租户均为中性占位，域名阶段 FINAL 不代表解析后的最终 IP 落点。",
+    "requests": [
+      {"host": "tenant-example.clerk.accounts.dev", "stage": "domain"},
+      {"host": "tenant-example.cloudfront.net", "stage": "domain"},
+      {"host": "tenant-example.azureedge.net", "stage": "domain"},
+      {"host": "tenant-example.github.io", "stage": "domain"},
+      {"host": "tenant-example.pages.dev", "stage": "domain"},
+      {"host": "tenant-example.workers.dev", "stage": "domain"},
+      {"host": "tenant-example.supabase.co", "stage": "domain"},
+      {"host": "tenant-example.readthedocs.io", "stage": "domain"},
+      {"host": "cdn.segment.com", "stage": "domain"},
+      {"host": "amplitude.com", "stage": "domain", "note": "不改动 api.amplitude.com 的既有例外"},
+      {"host": "cdn.cookielaw.org", "stage": "domain"},
+      {"host": "geo.captcha-delivery.com", "stage": "domain"},
+      {"host": "tenant-example.edge.sdk.awswaf.com", "stage": "domain"},
+      {"host": "ipapi.co", "stage": "domain"}
+    ],
+    "assert": {"same_policy": true, "policy": "Final"}
   }
 ]

@@ -5,11 +5,16 @@
 # Topology and matching options: config/routing.json.
 # Sources and review decisions: SOURCES.md.
 
+DOMAIN-SUFFIX,aaai.org
 DOMAIN-SUFFIX,acm.org
+DOMAIN-SUFFIX,aeaweb.org
 DOMAIN-SUFFIX,altmetric.com
 DOMAIN-SUFFIX,arxiv.org
 DOMAIN-SUFFIX,biomedcentral.com
+DOMAIN-SUFFIX,biorxiv.org
 DOMAIN-SUFFIX,colmweb.org
+DOMAIN-SUFFIX,computer.org
+DOMAIN-SUFFIX,connectedpapers.com
 DOMAIN-SUFFIX,crossref.org
 DOMAIN-SUFFIX,datacite.org
 DOMAIN-SUFFIX,dimensions.ai
@@ -20,14 +25,23 @@ DOMAIN-SUFFIX,figshare.com
 DOMAIN-SUFFIX,figstatic.com
 DOMAIN-SUFFIX,ieee.org
 DOMAIN-SUFFIX,jmlr.org
+DOMAIN-SUFFIX,litmaps.com
+DOMAIN-SUFFIX,medrxiv.org
 DOMAIN-SUFFIX,mlanthology.org
 DOMAIN-SUFFIX,mlr.press
 DOMAIN-SUFFIX,nature.com
+DOMAIN-SUFFIX,nber.org
 DOMAIN-SUFFIX,openreview.net
+DOMAIN-SUFFIX,orcid.org
+DOMAIN-SUFFIX,osf.io
+DOMAIN-SUFFIX,peerj.com
 DOMAIN-SUFFIX,philarchive.org
 DOMAIN-SUFFIX,philpapers.org
+DOMAIN-SUFFIX,physiology.org
 DOMAIN-SUFFIX,plos.org
+DOMAIN-SUFFIX,psyarxiv.com
 DOMAIN-SUFFIX,researchgate.net
+DOMAIN-SUFFIX,researchsquare.com
 DOMAIN-SUFFIX,rug.nl
 DOMAIN-SUFFIX,science.org
 DOMAIN-SUFFIX,sciencedirect.com
@@ -38,5 +52,7 @@ DOMAIN-SUFFIX,semanticscholar.org
 DOMAIN-SUFFIX,springer.com
 DOMAIN-SUFFIX,springernature.com
 DOMAIN-SUFFIX,ssrn.com
+DOMAIN-SUFFIX,taylorandfrancis.com
 DOMAIN-SUFFIX,tilburguniversity.edu
 DOMAIN-SUFFIX,toronto.edu
+DOMAIN-SUFFIX,zenodo.org

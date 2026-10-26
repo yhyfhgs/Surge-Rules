@@ -1,0 +1,201 @@
+{
+  "version": 1,
+  "overlays": [
+    {
+      "name": "TailscaleWebsiteDNS",
+      "kind": "domain",
+      "clients": ["surge-macos"],
+      "reason": "Preserve the four existing exact-host proxy-DNS exceptions; this resolver selector is narrower than the website routing overlay.",
+      "placement": "before-common",
+      "before": ["TailscaleControl"],
+      "conflicts": [],
+      "sources": [
+        {"type": "file", "path": "overlays/sources/TailscaleWebsiteDNS.list", "public_suffixes": ["tailscale.com"], "cidrs": [], "ports": []}
+      ]
+    },
+    {
+      "name": "TailscaleProxy",
+      "kind": "domain",
+      "clients": ["surge-macos", "surge-ios", "mihomo-windows"],
+      "reason": "Preserve the common website, account and log exact-host exceptions without proxying the complete control namespace.",
+      "placement": "before-common",
+      "before": ["TailscaleControl"],
+      "conflicts": ["TailscaleCampusProxy"],
+      "sources": [
+        {"type": "file", "path": "overlays/sources/TailscaleProxy.list", "public_suffixes": ["tailscale.com", "tailscale.io"], "cidrs": [], "ports": []}
+      ]
+    },
+    {
+      "name": "TailscaleCampusProxy",
+      "kind": "domain",
+      "clients": ["surge-macos", "mihomo-windows"],
+      "reason": "Campus alternative: common website exceptions plus only the archived blocked relay hosts and two-character relay wildcard.",
+      "placement": "before-common",
+      "before": ["TailscaleControl"],
+      "conflicts": ["TailscaleProxy"],
+      "sources": [
+        {"type": "overlay", "name": "TailscaleProxy"},
+        {"type": "file", "path": "overlays/sources/TailscaleCampusRelays.list", "public_suffixes": ["tailscale.com"], "cidrs": [], "ports": []}
+      ]
+    },
+    {
+      "name": "TailscaleNetwork",
+      "kind": "domain",
+      "clients": ["surge-macos", "surge-ios", "mihomo-windows"],
+      "reason": "Portable MagicDNS namespace only; individual tailnets, peers and application bypass settings remain private.",
+      "placement": "before-common",
+      "before": [],
+      "conflicts": [],
+      "sources": [
+        {"type": "file", "path": "overlays/sources/TailscaleNetwork.list", "public_suffixes": ["ts.net"], "cidrs": [], "ports": []}
+      ]
+    },
+    {
+      "name": "TailscaleNetworkIP",
+      "kind": "ip",
+      "clients": ["surge-macos", "surge-ios", "mihomo-windows"],
+      "reason": "Standard Tailscale address allocations, without peer addresses or private subnet-router routes; never initiate resolution.",
+      "placement": "before-common",
+      "before": [],
+      "conflicts": [],
+      "sources": [
+        {"type": "file", "path": "overlays/sources/TailscaleNetworkIP.list", "public_suffixes": [], "cidrs": ["100.64.0.0/10", "fd7a:115c:a1e0::/48"], "ports": []}
+      ]
+    },
+    {
+      "name": "TailscaleControl",
+      "kind": "domain",
+      "clients": ["surge-macos", "surge-ios", "mihomo-windows"],
+      "reason": "Control and relay fallback after the selected exact-host website/relay exceptions; process-level transport exemptions remain private.",
+      "placement": "before-common",
+      "before": [],
+      "conflicts": [],
+      "sources": [
+        {"type": "file", "path": "overlays/sources/TailscaleControl.list", "public_suffixes": ["tailscale.com", "tailscale.io", "tailscale.net"], "cidrs": [], "ports": []}
+      ]
+    },
+    {
+      "name": "CloudflareTunnel",
+      "kind": "domain",
+      "clients": ["surge-macos", "mihomo-windows"],
+      "reason": "Preserve the tunnel transport namespace, not arbitrary Cloudflare sites or private tunnel hostnames.",
+      "placement": "before-common",
+      "before": [],
+      "conflicts": [],
+      "sources": [
+        {"type": "file", "path": "overlays/sources/CloudflareTunnel.list", "public_suffixes": ["argotunnel.com"], "cidrs": [], "ports": []}
+      ]
+    },
+    {
+      "name": "CloudflareTunnelIP",
+      "kind": "ip",
+      "clients": ["surge-macos", "mihomo-windows"],
+      "reason": "Preserve all three archived public prefix expressions only on destination port 7844, including the equivalent masked IPv6 spelling; no general Cloudflare IP bypass.",
+      "placement": "before-common",
+      "before": [],
+      "conflicts": [],
+      "sources": [
+        {"type": "file", "path": "overlays/sources/CloudflareTunnelIP.list", "public_suffixes": [], "cidrs": ["198.41.192.0/19", "2606:4700:a0::/44", "2606:4700:a8::/44"], "ports": [7844]}
+      ]
+    },
+    {
+      "name": "WindowsReject",
+      "kind": "domain",
+      "clients": ["surge-macos", "mihomo-windows"],
+      "reason": "Optional Windows gateway rejection selector; binding it to rejection and restricting gateway clients are private integration decisions.",
+      "placement": "before-common",
+      "before": ["WindowsGateway"],
+      "conflicts": [],
+      "sources": [
+        {"type": "file", "path": "overlays/sources/WindowsReject.list", "public_suffixes": ["ipv6.microsoft.com"], "cidrs": [], "ports": []}
+      ]
+    },
+    {
+      "name": "WindowsGateway",
+      "kind": "domain",
+      "clients": ["surge-macos", "mihomo-windows"],
+      "reason": "Archived Windows gateway domain controls only, without expanding them to all Microsoft or connectivity-test traffic.",
+      "placement": "before-common",
+      "before": [],
+      "conflicts": [],
+      "sources": [
+        {"type": "file", "path": "overlays/sources/WindowsGateway.list", "public_suffixes": ["do.dsp.mp.microsoft.com", "msftncsi.com", "get.microsoft.com"], "cidrs": [], "ports": []}
+      ]
+    },
+    {
+      "name": "WindowsGatewayPorts",
+      "kind": "transport",
+      "clients": ["surge-macos", "mihomo-windows"],
+      "reason": "Archived UDP-only time-service exception and protocol-independent delivery-optimization port; retain per-client guards privately.",
+      "placement": "before-common",
+      "before": [],
+      "conflicts": [],
+      "sources": [
+        {"type": "file", "path": "overlays/sources/WindowsGatewayPorts.list", "public_suffixes": [], "cidrs": [], "ports": [123, 7680]}
+      ]
+    },
+    {
+      "name": "CampusNetwork",
+      "kind": "domain",
+      "clients": ["surge-macos", "mihomo-windows"],
+      "reason": "Derive the institutional namespace from PKU, including future reviewed PKU additions; suitable for explicit campus DNS/real-IP integration.",
+      "placement": "after-reject",
+      "before": ["CampusServices"],
+      "conflicts": [],
+      "sources": [
+        {"type": "common", "path": "lists/PKU.list"}
+      ]
+    },
+    {
+      "name": "CampusServices",
+      "kind": "domain",
+      "clients": ["surge-macos", "mihomo-windows"],
+      "reason": "Derive PKU, Academic and reviewed campus service families for physical campus egress after Reject. The archived campus domain set has no remaining residuals.",
+      "placement": "after-reject",
+      "before": [],
+      "conflicts": [],
+      "sources": [
+        {"type": "overlay", "name": "CampusNetwork"},
+        {"type": "common", "path": "lists/Academic.list"},
+        {"type": "campus-services", "path": "config/campus-services.json"}
+      ]
+    },
+    {
+      "name": "CampusExtraIP",
+      "kind": "ip",
+      "clients": ["surge-macos", "mihomo-windows"],
+      "reason": "The single owner-approved campus destination, separate from resolving PKUIP so an early raw-address exception cannot bypass the domain stage for every campus range.",
+      "placement": "after-reject",
+      "before": [],
+      "conflicts": [],
+      "sources": [
+        {"type": "file", "path": "overlays/sources/CampusNetworkExtraIP.list", "public_suffixes": [], "cidrs": ["10.129.167.101/32"], "ports": []}
+      ]
+    },
+    {
+      "name": "CampusNetworkIP",
+      "kind": "ip",
+      "clients": ["surge-macos", "mihomo-windows"],
+      "reason": "Derive PKU address ranges plus one explicitly owner-approved campus destination; all IP leaves use no-resolve.",
+      "placement": "after-reject",
+      "before": [],
+      "conflicts": [],
+      "sources": [
+        {"type": "common", "path": "lists/PKUIP.list"},
+        {"type": "overlay", "name": "CampusExtraIP"}
+      ]
+    },
+    {
+      "name": "UKAI",
+      "kind": "domain",
+      "clients": ["surge-macos"],
+      "reason": "Preserve the existing UK profile's 30 inline AI selectors, in order and without policies; retain ModelDownloadCDN and AI before this overlay and AIIP after it.",
+      "placement": "uk-ai-exceptions",
+      "before": [],
+      "conflicts": [],
+      "sources": [
+        {"type": "file", "path": "overlays/sources/UKAI.list", "public_suffixes": ["gemini.google.com", "gemini.google", "aistudio.google.com", "makersuite.google.com", "alkalimakersuite-pa.clients6.google.com", "generativelanguage.googleapis.com", "notebooklm.google.com", "notebooklm.google", "labs.google", "aisandbox-pa.googleapis.com", "jules.google.com", "jules.google", "antigravity.google", "cloudcode-pa.googleapis.com", "daily-cloudcode-pa.googleapis.com", "aiplatform.googleapis.com", "*-aiplatform.googleapis.com", "gemini-api-docs-mcp.dev", "copilot.microsoft.com", "copilot.com", "copilot.cloud.microsoft", "m365copilot.com", "copilotprodattachments.blob.core.windows.net", "sydney.bing.com", "githubcopilot.com", "copilot-proxy.githubusercontent.com", "meta.ai", "llama.com", "grok.com", "x.ai"], "cidrs": [], "ports": []}
+      ]
+    }
+  ]
+}

@@ -27,6 +27,7 @@ DOMAIN,idetoolkits.amazonwebservices.com
 DOMAIN,mcp.cloudflare.com
 DOMAIN,models.dev
 DOMAIN,oaisidekickupdates.blob.core.windows.net
+DOMAIN,open.manus.ai
 DOMAIN,openai-api.arkoselabs.com
 DOMAIN,openai.com.cdn.cloudflare.net
 DOMAIN,openaiapi-site.azureedge.net
@@ -75,6 +76,7 @@ DOMAIN-SUFFIX,blackbox.ai
 DOMAIN-SUFFIX,blackforestlabs.ai
 DOMAIN-SUFFIX,bolt.new
 DOMAIN-SUFFIX,boltai.com
+DOMAIN-SUFFIX,braintrust.dev
 DOMAIN-SUFFIX,browser-intake-datadoghq.com
 DOMAIN-SUFFIX,browser-intake-datadoghq.eu
 DOMAIN-SUFFIX,browser-intake-us5-datadoghq.com
@@ -130,6 +132,7 @@ DOMAIN-SUFFIX,comfyregistry.org
 DOMAIN-SUFFIX,commandcode.ai
 DOMAIN-SUFFIX,composio.dev
 DOMAIN-SUFFIX,conductor.build
+DOMAIN-SUFFIX,consensus.app
 DOMAIN-SUFFIX,console.aws.a2z.com
 DOMAIN-SUFFIX,continue.dev
 DOMAIN-SUFFIX,copy.ai
@@ -166,6 +169,7 @@ DOMAIN-SUFFIX,elevenlabs.com
 DOMAIN-SUFFIX,elevenlabs.io
 DOMAIN-SUFFIX,elevenmusic.ai
 DOMAIN-SUFFIX,elevenreader.io
+DOMAIN-SUFFIX,elicit.com
 DOMAIN-SUFFIX,emergent.sh
 DOMAIN-SUFFIX,eu-central-1.maas.aliyuncs.com
 DOMAIN-SUFFIX,exa.ai
@@ -347,6 +351,7 @@ DOMAIN-SUFFIX,replicate.delivery
 DOMAIN-SUFFIX,replika.ai
 DOMAIN-SUFFIX,replika.com
 DOMAIN-SUFFIX,replit.com
+DOMAIN-SUFFIX,researchrabbit.ai
 DOMAIN-SUFFIX,reve.com
 DOMAIN-SUFFIX,rewind.ai
 DOMAIN-SUFFIX,roo-code.com
@@ -356,6 +361,7 @@ DOMAIN-SUFFIX,runway.team
 DOMAIN-SUFFIX,runwayml.com
 DOMAIN-SUFFIX,sambanova.ai
 DOMAIN-SUFFIX,scale.com
+DOMAIN-SUFFIX,scite.ai
 DOMAIN-SUFFIX,searchgpt.com
 DOMAIN-SUFFIX,sentry-cdn.com
 DOMAIN-SUFFIX,sentry.io

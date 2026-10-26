@@ -1,0 +1,2 @@
+# Generic MagicDNS namespace only; no tailnet or peer names.
+DOMAIN-SUFFIX,ts.net

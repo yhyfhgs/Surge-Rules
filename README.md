@@ -20,6 +20,20 @@ Mihomo users can merge [clash/rule-providers.yaml](clash/rule-providers.yaml)
 and supply their own policy groups. Follow the [Clash deployment contract](docs/CLASH.md)
 for DNS, TUN and runtime limits. Files under `clash/` are generated.
 
+## Device-scoped remote lists
+
+[Optional device overlays](docs/DEVICE-OVERLAYS.md) cover campus access,
+Tailscale, Macmini gateway services and the UK AI exceptions without changing
+global ownership. Maintain `config/device-overlays.json` and its public sources;
+`overlays/surge/` and `overlays/clash/` are generated, distributed via the same
+GitHub/jsDelivr release as `lists/` and `clash/`. Private device credentials,
+listener guards, process exemptions and deployment settings stay outside Git.
+
+```bash
+python3 tools/device_overlays.py
+python3 tools/device_overlays.py --check --native
+```
+
 ## Maintain
 
 Assign each rule to one owner, keep domain rules before the encrypted-resolution

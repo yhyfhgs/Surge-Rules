@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "scope": "Optional campus device overlay only; not a global ownership change or entitlement claim.",
+  "families": [
+    {
+      "name": "Existing reviewed academic publishers and databases",
+      "evidence": ["lists/ChinaDomain.list", "https://www.lib.pku.edu.cn/portal/cn/news/0000002139"],
+      "suffixes": ["acs.org", "aip.net", "aip.org", "annualreviews.org", "aps.org", "cambridge.org", "clarivate.com", "cnki.net", "cnki.vip", "cqvip.com", "cqvip.vip", "ebscohost.com", "emerald.com", "iop.org", "jstor.org", "karger.com", "oup.com", "pnas.org", "proquest.com", "rsc.org", "sagepub.com", "scopus.com", "siam.org", "tandfonline.com", "wanfangdata.com", "webofknowledge.com", "wiley.com"]
+    },
+    {
+      "name": "Institutional login and current publisher platforms",
+      "evidence": ["https://www.lib.pku.edu.cn/portal/cn/news/0000002139", "https://www.lib.pku.edu.cn/portal/cn/node/4798"],
+      "suffixes": ["carsi.edu.cn", "webofscience.com", "ebsco.com", "taylorfrancis.com", "degruyter.com", "degruyterbrill.com", "cell.com"]
+    },
+    {
+      "name": "Campus software account and licensing families",
+      "evidence": ["https://m.pku.edu.cn/download_software.jsp", "https://www.mathworks.com/help/install/install-products.html", "https://docs.originlab.com/license/concurrent-additional-info/", "https://www.lib.pku.edu.cn/portal/cn/zy/software"],
+      "suffixes": ["mathworks.com", "mathworks.cn", "originlab.com", "endnote.com"]
+    },
+    {
+      "name": "Wolfram institutional activation family",
+      "evidence": ["https://support.wolfram.com/234", "https://reference.wolfram.com/language/tutorial/ActivatingMathematica.html.en"],
+      "suffixes": ["wolfram.com", "wolframcloud.com"]
+    }
+  ]
+}

@@ -5,6 +5,55 @@ criteria. Source revisions and licenses below describe the recorded inputs;
 curated lists may differ from upstream routing decisions. Retired script/module
 development references remain in Git history.
 
+## FINAL review and portable overlays (2026-10-27)
+
+The 29 new common service rules use current first-party pages and explicit
+application links, not an aggregate import. Scholarly publication/repository and
+research identifier services use Academic; independent AI applications use AI.
+Manus and Microsoft news gain exact hosts only. Generic components, tenant
+boundaries, unidentified infrastructure and raw shared-cloud IPs remain unassigned.
+Observed page hashes and narrow decisions are recorded in
+`sources.lock.json:final_monitor_review_20261027`; these are mutable-page
+observations, not replayable list imports or authenticated-access claims.
+
+| Owner | Accepted rule | First-party evidence |
+|---|---|---|
+| Academic | `DOMAIN-SUFFIX,aaai.org` | https://aaai.org/<br>https://ojs.aaai.org/ |
+| Academic | `DOMAIN-SUFFIX,aeaweb.org` | https://aeaweb.org/ |
+| Academic | `DOMAIN-SUFFIX,biorxiv.org` | https://biorxiv.org/ |
+| Academic | `DOMAIN-SUFFIX,computer.org` | https://computer.org/ |
+| Academic | `DOMAIN-SUFFIX,connectedpapers.com` | https://connectedpapers.com/ |
+| Academic | `DOMAIN-SUFFIX,litmaps.com` | https://litmaps.com/ |
+| Academic | `DOMAIN-SUFFIX,medrxiv.org` | https://medrxiv.org/ |
+| Academic | `DOMAIN-SUFFIX,nber.org` | https://nber.org/ |
+| Academic | `DOMAIN-SUFFIX,orcid.org` | https://info.orcid.org/<br>https://orcid.org/ |
+| Academic | `DOMAIN-SUFFIX,osf.io` | https://osf.io/<br>https://psyarxiv.com/ |
+| Academic | `DOMAIN-SUFFIX,peerj.com` | https://peerj.com/ |
+| Academic | `DOMAIN-SUFFIX,physiology.org` | https://physiology.org/ |
+| Academic | `DOMAIN-SUFFIX,psyarxiv.com` | https://psyarxiv.com/<br>https://osf.io/ |
+| Academic | `DOMAIN-SUFFIX,researchsquare.com` | https://researchsquare.com/ |
+| Academic | `DOMAIN-SUFFIX,taylorandfrancis.com` | https://taylorandfrancis.com/ |
+| Academic | `DOMAIN-SUFFIX,zenodo.org` | https://zenodo.org/<br>https://developers.zenodo.org/ |
+| AI | `DOMAIN-SUFFIX,braintrust.dev` | https://braintrust.dev/ |
+| AI | `DOMAIN-SUFFIX,consensus.app` | https://consensus.app/ |
+| AI | `DOMAIN-SUFFIX,elicit.com` | https://elicit.com/ |
+| AI | `DOMAIN-SUFFIX,researchrabbit.ai` | https://researchrabbit.ai/ |
+| AI | `DOMAIN-SUFFIX,scite.ai` | https://scite.ai/ |
+| AI | `DOMAIN,open.manus.ai` | https://manus.ai/ |
+| ProxyGFW | `DOMAIN-SUFFIX,astral.sh` | https://astral.sh/ |
+| ProxyGFW | `DOMAIN-SUFFIX,basecamp.com` | https://basecamp.com/ |
+| ProxyGFW | `DOMAIN-SUFFIX,codecov.io` | https://codecov.io/ |
+| ProxyGFW | `DOMAIN-SUFFIX,eclipse.org` | https://eclipse.org/ |
+| ProxyGFW | `DOMAIN-SUFFIX,postgresql.org` | https://postgresql.org/ |
+| ProxyGFW | `DOMAIN-SUFFIX,pytest.org` | https://pytest.org/ |
+| Microsoft | `DOMAIN,news.microsoft.com` | https://news.microsoft.com/ |
+
+The owner's existing `pku-dasys.cn` selector moves into PKU. Optional public
+device overlays derive PKU, Academic and `config/campus-services.json`, and keep
+portable Tailscale/Windows/tunnel/UK selectors separate from global ownership.
+The explicit campus destination is owner-requested, not an inferred cloud range.
+See [overlay composition and privacy boundaries](docs/DEVICE-OVERLAYS.md).
+
 ## Rule inputs
 
 | Source | Recorded revision | Recorded license | Use |

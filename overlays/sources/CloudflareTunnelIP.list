@@ -1,0 +1,5 @@
+# Preserve the archived port constraint and public prefix expressions.
+# The third expression masks to the same IPv6 /44 as the second.
+AND,((DEST-PORT,7844),(IP-CIDR,198.41.192.0/19,no-resolve))
+AND,((DEST-PORT,7844),(IP-CIDR6,2606:4700:a0::/44,no-resolve))
+AND,((DEST-PORT,7844),(IP-CIDR6,2606:4700:a8::/44,no-resolve))

@@ -20,7 +20,7 @@ SURGE_COUNTRY_DB_PATH="${SURGE_COUNTRY_DB_PATH:-$SURGE_COUNTRY_DB_DEFAULT}"
 SURGE_ASN_DB_PATH="${SURGE_ASN_DB_PATH:-/Applications/Surge.app/Contents/Resources/GeoLite2-ASN.mmdb}"
 # Purge only published list/provider artifacts; modules and scripts are not
 # production outputs and intentionally remain outside this candidate set.
-DIST_RE='^(lists/[^/]+\.list|clash/([^/]+\.list|rule-providers\.yaml))$'
+DIST_RE='^(lists/[^/]+\.list|clash/([^/]+\.list|rule-providers\.yaml)|overlays/(index\.json|surge/[^/]+\.list|clash/([^/]+\.list|rule-providers\.yaml)))$'
 COMMIT_MSG="${1:-update rules}"
 
 RUN_TMP="$(mktemp -d)"
@@ -110,6 +110,22 @@ if [ "$branch" != "main" ]; then
 fi
 
 # ── 1. 发布闸门 ─────────────────────────────────────────────────────────────
+# Scoped releases validate an exported INDEX tree, not mutable working-tree
+# validators, deny registries or scenarios. No Git operations run in the export.
+VALIDATION_ROOT="$PWD"
+if [ "${SURGE_RELEASE_STAGED_ONLY:-0}" = "1" ]; then
+  RELEASE_PROFILE="$(python3 -c 'import os,sys; print(os.path.abspath(sys.argv[1]))' "$RELEASE_PROFILE")"
+  VALIDATION_ROOT="$RUN_TMP/index"
+  mkdir "$VALIDATION_ROOT"
+  git archive "$(git write-tree)" | tar -x -C "$VALIDATION_ROOT"
+fi
+(
+cd "$VALIDATION_ROOT"
+echo "[pre-flight] 公共规则与设备覆盖层检查…"
+python3 tools/sort_lists.py --check
+python3 tools/device_overlays.py --check --native
+python3 tests/device_overlays_test.py
+
 echo "[pre-flight] ChinaIP 折叠漂移检查…"
 if ! python3 tools/collapse_cidr.py lists/ChinaIP.list --check; then
   echo "✗ ChinaIP.list 未折叠（上游再生后须先跑 tools/collapse_cidr.py lists/ChinaIP.list），中止发布"; exit 1
@@ -144,11 +160,15 @@ if ! python3 tests/audit.py --conf "$RELEASE_PROFILE" --rules lists --check all 
 if ! python3 tests/runsuite.py --conf "$RELEASE_PROFILE" --rules lists; then echo "✗ 场景断言未过，中止发布"; exit 1; fi
 
 echo "[pre-flight] 重新生成 Clash 派生规则集 (clash/)…"
+if [ "${SURGE_RELEASE_STAGED_ONLY:-0}" = "1" ]; then
+  python3 tools/surge2clash.py --check
+fi
 if ! python3 tools/surge2clash.py; then echo "✗ Clash 转换失败，中止发布"; exit 1; fi
 
 if ! python3 tests/clash_contract.py --conf "$RELEASE_PROFILE"; then
   echo "✗ Clash 同源/顺序契约失败，中止发布"; exit 1
 fi
+)
 
 # ── 2. 发布基线 ─────────────────────────────────────────────────────────────
 # Refresh origin/main for the incremental diff. A failed fetch only widens the
@@ -161,7 +181,27 @@ if git rev-parse --verify --quiet origin/main >/dev/null; then
   old=$(git rev-parse origin/main)
 fi
 
-git add -A
+# A scoped release can use an explicitly reviewed index, leaving unrelated
+# working-tree edits untouched. Never stage those edits implicitly in this mode.
+if [ "${SURGE_RELEASE_STAGED_ONLY:-0}" != "1" ]; then
+  git add -A
+else
+  # The validated public inputs and all distribution bytes must be the exact
+  # staged versions, even when unrelated documentation/private-builder work is
+  # deliberately left unstaged. Missing new inputs are failures too.
+  python3 - <<'PYINDEX'
+from pathlib import Path
+import subprocess
+paths = {p for root in ('lists', 'clash', 'overlays') for p in Path(root).rglob('*') if p.is_file()}
+paths.update(Path(p) for p in ('config/routing.json', 'config/campus-services.json',
+    'config/device-overlays.json', 'config/mihomo-runtime.yaml', 'tools/device_overlays.py',
+    'tests/device_overlays_test.py', 'tests/scenarios/final_monitor.json', 'update.sh'))
+for path in sorted(paths):
+    staged = subprocess.run(['git', 'show', ':' + path.as_posix()], capture_output=True)
+    if staged.returncode or staged.stdout != path.read_bytes():
+        raise SystemExit('Validated/staged mismatch: ' + path.as_posix())
+PYINDEX
+fi
 if git diff --cached --quiet; then
   echo "[publish] 工作区无变更，未产生新提交"
 else
@@ -213,7 +253,7 @@ if [ -n "$old" ] && [ "$old" != "$new" ]; then
   done
   echo "[publish] 本次变更分发文件 $((live_n+gone_n)) 个（现存 ${live_n} ｜ 已删除 ${gone_n}）"
 else
-  for f in lists/*.list clash/*.list clash/rule-providers.yaml; do
+  for f in lists/*.list clash/*.list clash/rule-providers.yaml overlays/surge/*.list overlays/clash/*.list overlays/clash/rule-providers.yaml overlays/index.json; do
     if [ -f "$f" ]; then live="$live $f"; live_n=$((live_n+1)); fi
   done
   echo "[publish] 无新提交（补刷模式）：全量 $live_n 个候选，先验后清"
@@ -241,10 +281,12 @@ max_reset=0
 for f in $live; do
   local_md5=$(md5 -q "$f")
   if remote_md5=$(cdn_md5 "$f"); then
-    if [ "$local_md5" = "$remote_md5" ]; then
+    if [ "$local_md5" = "$remote_md5" ] && [ "$old" = "$new" ]; then
       already=$((already+1))
       continue
     fi
+    # A matching POP is not proof other clients see a newly published change.
+    # Purge every changed path on a new release; skip only on a full retry.
   else
     # Never treat a fetch failure as equality or silently ignore it: count it
     # and purge. A new path's expected 404 is cleared if post-purge md5 matches.

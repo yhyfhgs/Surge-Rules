@@ -1,0 +1,477 @@
+{
+  "version": 1,
+  "inputs": {
+    "config/campus-services.json": "bb937480fe7b4a134236739d5fcb39fee9270b290b8798c42ad085b5df03e2c3",
+    "config/device-overlays.json": "82c5d36c049c475dae6ce73f29c69f0c54edfd09d57bf7add8ef1c9819f006b9",
+    "lists/Academic.list": "25e32a2d06cd4dff77e773f470ecb3753aa2e399ba49587f4160f238d4806c09",
+    "lists/PKU.list": "036b019165d1f8dbc14761fe8fb739a6e6414d99368f8953473e21883b03a520",
+    "lists/PKUIP.list": "8473e96959b772b6ef8f9eb10fe34320bb1c14cd70d1371aaf8084e0549d01eb",
+    "overlays/sources/CampusNetworkExtraIP.list": "78b7eed6af8d3f77434b1899d15251527a98f251d68723c4dae1a04241bc7e0e",
+    "overlays/sources/CloudflareTunnel.list": "b27cf2d092f11a0c2b996be2c199ac948fabffda5578020e23fcf44795e9ea51",
+    "overlays/sources/CloudflareTunnelIP.list": "f1b2d6440f6f802afb746ce5d48895ab3bb74f760b2d366aa78ab3404640638a",
+    "overlays/sources/TailscaleCampusRelays.list": "bab5884c3a2b894d08e36e4f397ada479800f0498d6ea3b84e91e70ffe0a478f",
+    "overlays/sources/TailscaleControl.list": "c000c86a6545c9a82962ff8a4ea5d7903e35fcca9ac640e06d6f33a30b367a03",
+    "overlays/sources/TailscaleNetwork.list": "8fcb60435ab7bf58096ab8319614f831533565513e8423d25d37aef986434ff6",
+    "overlays/sources/TailscaleNetworkIP.list": "4f7d8e07442783ff8ca2ea7b1f9f6dbc39ebe8dfb89005266648b41c1e4862e1",
+    "overlays/sources/TailscaleProxy.list": "b871da12583f43ee46fe74dcf806595c2a6f2782af04ee12e03e47336c145994",
+    "overlays/sources/TailscaleWebsiteDNS.list": "aa947cc6cb3d3d57e8fec9ee8e55d5ddaeea638be086c35f3d557203df807dcc",
+    "overlays/sources/UKAI.list": "37c0a0979985867357dfea512a0f8713b11e758b24d88f8502b7f9f5835f04cc",
+    "overlays/sources/WindowsGateway.list": "8b497796c46848e58a1f0e030506df8c9017d80194a8f12e19cbd46acc886257",
+    "overlays/sources/WindowsGatewayPorts.list": "4a49d7e7331b8a5354ebe1d33a60a1b137a942e6d386438947979bdd5d7e90ba",
+    "overlays/sources/WindowsReject.list": "87ae4b280ffbfd0e90cf5e7365b3fddaa9d9654c163764112b7b909b45f2d86e"
+  },
+  "overlays": [
+    {
+      "name": "TailscaleWebsiteDNS",
+      "kind": "domain",
+      "clients": [
+        "surge-macos"
+      ],
+      "reason": "Preserve the four existing exact-host proxy-DNS exceptions; this resolver selector is narrower than the website routing overlay.",
+      "placement": "before-common",
+      "before": [
+        "TailscaleControl"
+      ],
+      "conflicts": [],
+      "inputs": [
+        "config/device-overlays.json",
+        "overlays/sources/TailscaleWebsiteDNS.list"
+      ],
+      "rule_count": 4,
+      "surge": {
+        "path": "overlays/surge/TailscaleWebsiteDNS.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/surge/TailscaleWebsiteDNS.list",
+        "no_resolve": false
+      },
+      "clash": {
+        "path": "overlays/clash/TailscaleWebsiteDNS.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/TailscaleWebsiteDNS.list",
+        "provider": "DeviceOverlayTailscaleWebsiteDNS"
+      }
+    },
+    {
+      "name": "TailscaleProxy",
+      "kind": "domain",
+      "clients": [
+        "surge-macos",
+        "surge-ios",
+        "mihomo-windows"
+      ],
+      "reason": "Preserve the common website, account and log exact-host exceptions without proxying the complete control namespace.",
+      "placement": "before-common",
+      "before": [
+        "TailscaleControl"
+      ],
+      "conflicts": [
+        "TailscaleCampusProxy"
+      ],
+      "inputs": [
+        "config/device-overlays.json",
+        "overlays/sources/TailscaleProxy.list"
+      ],
+      "rule_count": 13,
+      "surge": {
+        "path": "overlays/surge/TailscaleProxy.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/surge/TailscaleProxy.list",
+        "no_resolve": false
+      },
+      "clash": {
+        "path": "overlays/clash/TailscaleProxy.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/TailscaleProxy.list",
+        "provider": "DeviceOverlayTailscaleProxy"
+      }
+    },
+    {
+      "name": "TailscaleCampusProxy",
+      "kind": "domain",
+      "clients": [
+        "surge-macos",
+        "mihomo-windows"
+      ],
+      "reason": "Campus alternative: common website exceptions plus only the archived blocked relay hosts and two-character relay wildcard.",
+      "placement": "before-common",
+      "before": [
+        "TailscaleControl"
+      ],
+      "conflicts": [
+        "TailscaleProxy"
+      ],
+      "inputs": [
+        "config/device-overlays.json",
+        "overlays/sources/TailscaleCampusRelays.list",
+        "overlays/sources/TailscaleProxy.list"
+      ],
+      "rule_count": 19,
+      "surge": {
+        "path": "overlays/surge/TailscaleCampusProxy.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/surge/TailscaleCampusProxy.list",
+        "no_resolve": false
+      },
+      "clash": {
+        "path": "overlays/clash/TailscaleCampusProxy.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/TailscaleCampusProxy.list",
+        "provider": "DeviceOverlayTailscaleCampusProxy"
+      }
+    },
+    {
+      "name": "TailscaleNetwork",
+      "kind": "domain",
+      "clients": [
+        "surge-macos",
+        "surge-ios",
+        "mihomo-windows"
+      ],
+      "reason": "Portable MagicDNS namespace only; individual tailnets, peers and application bypass settings remain private.",
+      "placement": "before-common",
+      "before": [],
+      "conflicts": [],
+      "inputs": [
+        "config/device-overlays.json",
+        "overlays/sources/TailscaleNetwork.list"
+      ],
+      "rule_count": 1,
+      "surge": {
+        "path": "overlays/surge/TailscaleNetwork.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/surge/TailscaleNetwork.list",
+        "no_resolve": false
+      },
+      "clash": {
+        "path": "overlays/clash/TailscaleNetwork.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/TailscaleNetwork.list",
+        "provider": "DeviceOverlayTailscaleNetwork"
+      }
+    },
+    {
+      "name": "TailscaleNetworkIP",
+      "kind": "ip",
+      "clients": [
+        "surge-macos",
+        "surge-ios",
+        "mihomo-windows"
+      ],
+      "reason": "Standard Tailscale address allocations, without peer addresses or private subnet-router routes; never initiate resolution.",
+      "placement": "before-common",
+      "before": [],
+      "conflicts": [],
+      "inputs": [
+        "config/device-overlays.json",
+        "overlays/sources/TailscaleNetworkIP.list"
+      ],
+      "rule_count": 2,
+      "surge": {
+        "path": "overlays/surge/TailscaleNetworkIP.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/surge/TailscaleNetworkIP.list",
+        "no_resolve": true
+      },
+      "clash": {
+        "path": "overlays/clash/TailscaleNetworkIP.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/TailscaleNetworkIP.list",
+        "provider": "DeviceOverlayTailscaleNetworkIP"
+      }
+    },
+    {
+      "name": "TailscaleControl",
+      "kind": "domain",
+      "clients": [
+        "surge-macos",
+        "surge-ios",
+        "mihomo-windows"
+      ],
+      "reason": "Control and relay fallback after the selected exact-host website/relay exceptions; process-level transport exemptions remain private.",
+      "placement": "before-common",
+      "before": [],
+      "conflicts": [],
+      "inputs": [
+        "config/device-overlays.json",
+        "overlays/sources/TailscaleControl.list"
+      ],
+      "rule_count": 3,
+      "surge": {
+        "path": "overlays/surge/TailscaleControl.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/surge/TailscaleControl.list",
+        "no_resolve": false
+      },
+      "clash": {
+        "path": "overlays/clash/TailscaleControl.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/TailscaleControl.list",
+        "provider": "DeviceOverlayTailscaleControl"
+      }
+    },
+    {
+      "name": "CloudflareTunnel",
+      "kind": "domain",
+      "clients": [
+        "surge-macos",
+        "mihomo-windows"
+      ],
+      "reason": "Preserve the tunnel transport namespace, not arbitrary Cloudflare sites or private tunnel hostnames.",
+      "placement": "before-common",
+      "before": [],
+      "conflicts": [],
+      "inputs": [
+        "config/device-overlays.json",
+        "overlays/sources/CloudflareTunnel.list"
+      ],
+      "rule_count": 1,
+      "surge": {
+        "path": "overlays/surge/CloudflareTunnel.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/surge/CloudflareTunnel.list",
+        "no_resolve": false
+      },
+      "clash": {
+        "path": "overlays/clash/CloudflareTunnel.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/CloudflareTunnel.list",
+        "provider": "DeviceOverlayCloudflareTunnel"
+      }
+    },
+    {
+      "name": "CloudflareTunnelIP",
+      "kind": "ip",
+      "clients": [
+        "surge-macos",
+        "mihomo-windows"
+      ],
+      "reason": "Preserve all three archived public prefix expressions only on destination port 7844, including the equivalent masked IPv6 spelling; no general Cloudflare IP bypass.",
+      "placement": "before-common",
+      "before": [],
+      "conflicts": [],
+      "inputs": [
+        "config/device-overlays.json",
+        "overlays/sources/CloudflareTunnelIP.list"
+      ],
+      "rule_count": 3,
+      "surge": {
+        "path": "overlays/surge/CloudflareTunnelIP.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/surge/CloudflareTunnelIP.list",
+        "no_resolve": true
+      },
+      "clash": {
+        "path": "overlays/clash/CloudflareTunnelIP.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/CloudflareTunnelIP.list",
+        "provider": "DeviceOverlayCloudflareTunnelIP"
+      }
+    },
+    {
+      "name": "WindowsReject",
+      "kind": "domain",
+      "clients": [
+        "surge-macos",
+        "mihomo-windows"
+      ],
+      "reason": "Optional Windows gateway rejection selector; binding it to rejection and restricting gateway clients are private integration decisions.",
+      "placement": "before-common",
+      "before": [
+        "WindowsGateway"
+      ],
+      "conflicts": [],
+      "inputs": [
+        "config/device-overlays.json",
+        "overlays/sources/WindowsReject.list"
+      ],
+      "rule_count": 1,
+      "surge": {
+        "path": "overlays/surge/WindowsReject.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/surge/WindowsReject.list",
+        "no_resolve": false
+      },
+      "clash": {
+        "path": "overlays/clash/WindowsReject.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/WindowsReject.list",
+        "provider": "DeviceOverlayWindowsReject"
+      }
+    },
+    {
+      "name": "WindowsGateway",
+      "kind": "domain",
+      "clients": [
+        "surge-macos",
+        "mihomo-windows"
+      ],
+      "reason": "Archived Windows gateway domain controls only, without expanding them to all Microsoft or connectivity-test traffic.",
+      "placement": "before-common",
+      "before": [],
+      "conflicts": [],
+      "inputs": [
+        "config/device-overlays.json",
+        "overlays/sources/WindowsGateway.list"
+      ],
+      "rule_count": 3,
+      "surge": {
+        "path": "overlays/surge/WindowsGateway.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/surge/WindowsGateway.list",
+        "no_resolve": false
+      },
+      "clash": {
+        "path": "overlays/clash/WindowsGateway.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/WindowsGateway.list",
+        "provider": "DeviceOverlayWindowsGateway"
+      }
+    },
+    {
+      "name": "WindowsGatewayPorts",
+      "kind": "transport",
+      "clients": [
+        "surge-macos",
+        "mihomo-windows"
+      ],
+      "reason": "Archived UDP-only time-service exception and protocol-independent delivery-optimization port; retain per-client guards privately.",
+      "placement": "before-common",
+      "before": [],
+      "conflicts": [],
+      "inputs": [
+        "config/device-overlays.json",
+        "overlays/sources/WindowsGatewayPorts.list"
+      ],
+      "rule_count": 2,
+      "surge": {
+        "path": "overlays/surge/WindowsGatewayPorts.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/surge/WindowsGatewayPorts.list",
+        "no_resolve": false
+      },
+      "clash": {
+        "path": "overlays/clash/WindowsGatewayPorts.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/WindowsGatewayPorts.list",
+        "provider": "DeviceOverlayWindowsGatewayPorts"
+      }
+    },
+    {
+      "name": "CampusNetwork",
+      "kind": "domain",
+      "clients": [
+        "surge-macos",
+        "mihomo-windows"
+      ],
+      "reason": "Derive the institutional namespace from PKU, including future reviewed PKU additions; suitable for explicit campus DNS/real-IP integration.",
+      "placement": "after-reject",
+      "before": [
+        "CampusServices"
+      ],
+      "conflicts": [],
+      "inputs": [
+        "config/device-overlays.json",
+        "lists/PKU.list"
+      ],
+      "rule_count": 8,
+      "surge": {
+        "path": "overlays/surge/CampusNetwork.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/surge/CampusNetwork.list",
+        "no_resolve": false
+      },
+      "clash": {
+        "path": "overlays/clash/CampusNetwork.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/CampusNetwork.list",
+        "provider": "DeviceOverlayCampusNetwork"
+      }
+    },
+    {
+      "name": "CampusServices",
+      "kind": "domain",
+      "clients": [
+        "surge-macos",
+        "mihomo-windows"
+      ],
+      "reason": "Derive PKU, Academic and reviewed campus service families for physical campus egress after Reject. The archived campus domain set has no remaining residuals.",
+      "placement": "after-reject",
+      "before": [],
+      "conflicts": [],
+      "inputs": [
+        "config/campus-services.json",
+        "config/device-overlays.json",
+        "lists/Academic.list",
+        "lists/PKU.list"
+      ],
+      "rule_count": 99,
+      "surge": {
+        "path": "overlays/surge/CampusServices.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/surge/CampusServices.list",
+        "no_resolve": false
+      },
+      "clash": {
+        "path": "overlays/clash/CampusServices.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/CampusServices.list",
+        "provider": "DeviceOverlayCampusServices"
+      }
+    },
+    {
+      "name": "CampusExtraIP",
+      "kind": "ip",
+      "clients": [
+        "surge-macos",
+        "mihomo-windows"
+      ],
+      "reason": "The single owner-approved campus destination, separate from resolving PKUIP so an early raw-address exception cannot bypass the domain stage for every campus range.",
+      "placement": "after-reject",
+      "before": [],
+      "conflicts": [],
+      "inputs": [
+        "config/device-overlays.json",
+        "overlays/sources/CampusNetworkExtraIP.list"
+      ],
+      "rule_count": 1,
+      "surge": {
+        "path": "overlays/surge/CampusExtraIP.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/surge/CampusExtraIP.list",
+        "no_resolve": true
+      },
+      "clash": {
+        "path": "overlays/clash/CampusExtraIP.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/CampusExtraIP.list",
+        "provider": "DeviceOverlayCampusExtraIP"
+      }
+    },
+    {
+      "name": "CampusNetworkIP",
+      "kind": "ip",
+      "clients": [
+        "surge-macos",
+        "mihomo-windows"
+      ],
+      "reason": "Derive PKU address ranges plus one explicitly owner-approved campus destination; all IP leaves use no-resolve.",
+      "placement": "after-reject",
+      "before": [],
+      "conflicts": [],
+      "inputs": [
+        "config/device-overlays.json",
+        "lists/PKUIP.list",
+        "overlays/sources/CampusNetworkExtraIP.list"
+      ],
+      "rule_count": 11,
+      "surge": {
+        "path": "overlays/surge/CampusNetworkIP.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/surge/CampusNetworkIP.list",
+        "no_resolve": true
+      },
+      "clash": {
+        "path": "overlays/clash/CampusNetworkIP.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/CampusNetworkIP.list",
+        "provider": "DeviceOverlayCampusNetworkIP"
+      }
+    },
+    {
+      "name": "UKAI",
+      "kind": "domain",
+      "clients": [
+        "surge-macos"
+      ],
+      "reason": "Preserve the existing UK profile's 30 inline AI selectors, in order and without policies; retain ModelDownloadCDN and AI before this overlay and AIIP after it.",
+      "placement": "uk-ai-exceptions",
+      "before": [],
+      "conflicts": [],
+      "inputs": [
+        "config/device-overlays.json",
+        "overlays/sources/UKAI.list"
+      ],
+      "rule_count": 30,
+      "surge": {
+        "path": "overlays/surge/UKAI.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/surge/UKAI.list",
+        "no_resolve": false
+      },
+      "clash": {
+        "path": "overlays/clash/UKAI.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/UKAI.list",
+        "provider": "DeviceOverlayUKAI"
+      }
+    }
+  ]
+}

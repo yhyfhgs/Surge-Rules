@@ -1,5 +1,27 @@
 # Current routing decisions
 
+## FINAL enrichment and remote device overlays (2026-10-27)
+
+The review adds 29 evidenced common service domains (Academic 16, AI 6,
+ProxyGFW 6, Microsoft 1), plus the owner's existing `pku-dasys.cn` selector in
+PKU. No shared-cloud IP, generic SaaS component, tenant boundary or unidentified
+infrastructure is newly assigned. The common first-match order is unchanged.
+
+[Optional device overlays](DEVICE-OVERLAYS.md) are a separate, policy-free
+composition layer, not new global owners. Campus selectors derive PKU/Academic
+and reviewed campus-service sources; standard Tailscale address space and the
+owner-approved campus destination have explicit no-resolve boundaries. UK keeps
+its restricted AI ordering. The Macmini retains its listener/source guards and
+private transport exemptions; publishing selectors does not publish or weaken
+those guards. Port-constrained tunnel/Windows exceptions keep their constraints.
+
+Surge and Mihomo outputs are generated together and included in the publisher's
+CDN verification set. Private profiles select only their required overlays via
+`@main`; updates do not require editing local service rules. Credentials, OS
+bypass settings, private process guards and server configuration are not public
+rule-list content. Native syntax does not establish target-device reachability,
+authentication, campus entitlement or actual QUIC forwarding.
+
 ## List-only upstream refresh (2026-10-09)
 
 All 53 existing lists were reviewed against 415 freshly verified upstream

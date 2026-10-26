@@ -1,0 +1,6 @@
+# Exact existing proxy-DNS exceptions, before the control-plane resolver fallback.
+# Routing exceptions have their own, deliberately wider selector.
+DOMAIN,tailscale.com
+DOMAIN,www.tailscale.com
+DOMAIN,login.tailscale.com
+DOMAIN,console.tailscale.com

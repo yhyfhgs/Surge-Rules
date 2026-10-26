@@ -1,0 +1,3 @@
+# Time traffic remains UDP-only; the delivery port remains protocol-independent.
+AND,((PROTOCOL,UDP),(DEST-PORT,123))
+DEST-PORT,7680

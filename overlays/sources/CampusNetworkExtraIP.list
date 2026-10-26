@@ -1,0 +1,2 @@
+# Owner-approved campus destination exception.
+IP-CIDR,10.129.167.101/32,no-resolve

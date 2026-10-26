@@ -1,0 +1,4 @@
+# Archived Windows gateway domain controls; source/listener guards stay private.
+DOMAIN-SUFFIX,do.dsp.mp.microsoft.com
+DOMAIN-SUFFIX,msftncsi.com
+DOMAIN,get.microsoft.com

@@ -1,0 +1,4 @@
+# Place the selected website/relay exceptions before these fallbacks.
+DOMAIN-SUFFIX,tailscale.com
+DOMAIN-SUFFIX,tailscale.io
+DOMAIN-SUFFIX,tailscale.net

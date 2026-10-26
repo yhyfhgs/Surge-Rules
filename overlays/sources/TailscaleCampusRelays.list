@@ -1,0 +1,7 @@
+# Campus-only archived relay exceptions; do not generalize to every relay.
+DOMAIN-WILDCARD,derp??.tailscale.com
+DOMAIN,derp10c.tailscale.com
+DOMAIN,derp10d.tailscale.com
+DOMAIN,derp13d.tailscale.com
+DOMAIN,derp22b.tailscale.com
+DOMAIN,derp27e.tailscale.com

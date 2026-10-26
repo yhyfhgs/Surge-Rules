@@ -1,5 +1,478 @@
 {
   "schema_version": 1,
+  "final_monitor_review_20261027": {
+    "reviewed_at": "2026-10-27",
+    "scope": "Curated first-party domain ownership; no IP admission, traffic inventory, or blocking claim.",
+    "accepted": [
+      {
+        "owner": "Academic",
+        "rule": "DOMAIN-SUFFIX,aaai.org",
+        "evidence": [
+          "https://aaai.org/",
+          "https://ojs.aaai.org/"
+        ],
+        "reason": "AAAI scholarly society and its first-party proceedings publisher."
+      },
+      {
+        "owner": "Academic",
+        "rule": "DOMAIN-SUFFIX,aeaweb.org",
+        "evidence": [
+          "https://aeaweb.org/"
+        ],
+        "reason": "American Economic Association publication and journal session family; the publisher root establishes the controlled namespace. The publications host itself returned a challenge, not a successful article retrieval."
+      },
+      {
+        "owner": "Academic",
+        "rule": "DOMAIN-SUFFIX,biorxiv.org",
+        "evidence": [
+          "https://biorxiv.org/"
+        ],
+        "reason": "First-party biology preprint repository."
+      },
+      {
+        "owner": "Academic",
+        "rule": "DOMAIN-SUFFIX,computer.org",
+        "evidence": [
+          "https://computer.org/"
+        ],
+        "reason": "IEEE Computer Society publishing and library surface, consistent with existing IEEE academic ownership."
+      },
+      {
+        "owner": "Academic",
+        "rule": "DOMAIN-SUFFIX,connectedpapers.com",
+        "evidence": [
+          "https://connectedpapers.com/"
+        ],
+        "reason": "First-party academic literature discovery service; no shared tenant/CDN namespace."
+      },
+      {
+        "owner": "Academic",
+        "rule": "DOMAIN-SUFFIX,litmaps.com",
+        "evidence": [
+          "https://litmaps.com/"
+        ],
+        "reason": "Literature discovery/review service; official page binds the app and API to the same scholarly search family."
+      },
+      {
+        "owner": "Academic",
+        "rule": "DOMAIN-SUFFIX,medrxiv.org",
+        "evidence": [
+          "https://medrxiv.org/"
+        ],
+        "reason": "First-party health sciences preprint repository."
+      },
+      {
+        "owner": "Academic",
+        "rule": "DOMAIN-SUFFIX,nber.org",
+        "evidence": [
+          "https://nber.org/"
+        ],
+        "reason": "National Bureau of Economic Research working-paper and research publication family; no pre-existing regional owner."
+      },
+      {
+        "owner": "Academic",
+        "rule": "DOMAIN-SUFFIX,orcid.org",
+        "evidence": [
+          "https://info.orcid.org/",
+          "https://orcid.org/"
+        ],
+        "reason": "Researcher identifier and scholarly identity API, not a generic third-party marketing identity graph."
+      },
+      {
+        "owner": "Academic",
+        "rule": "DOMAIN-SUFFIX,osf.io",
+        "evidence": [
+          "https://osf.io/",
+          "https://psyarxiv.com/"
+        ],
+        "reason": "Open Science Framework repository and public API. PsyArXiv redirects to its first-party preprint application. No arbitrary tenant-hosting parent is added."
+      },
+      {
+        "owner": "Academic",
+        "rule": "DOMAIN-SUFFIX,peerj.com",
+        "evidence": [
+          "https://peerj.com/"
+        ],
+        "reason": "Peer-reviewed open-access publisher."
+      },
+      {
+        "owner": "Academic",
+        "rule": "DOMAIN-SUFFIX,physiology.org",
+        "evidence": [
+          "https://physiology.org/"
+        ],
+        "reason": "American Physiological Society and its first-party journals."
+      },
+      {
+        "owner": "Academic",
+        "rule": "DOMAIN-SUFFIX,psyarxiv.com",
+        "evidence": [
+          "https://psyarxiv.com/",
+          "https://osf.io/"
+        ],
+        "reason": "PsyArXiv first-party preprint redirect retained with the OSF destination family."
+      },
+      {
+        "owner": "Academic",
+        "rule": "DOMAIN-SUFFIX,researchsquare.com",
+        "evidence": [
+          "https://researchsquare.com/"
+        ],
+        "reason": "Scholarly preprint/manuscript service, not a generic AI or tracking owner."
+      },
+      {
+        "owner": "Academic",
+        "rule": "DOMAIN-SUFFIX,taylorandfrancis.com",
+        "evidence": [
+          "https://taylorandfrancis.com/"
+        ],
+        "reason": "First-party scholarly publisher; existing separately owned DIRECT publishing domains remain unchanged."
+      },
+      {
+        "owner": "Academic",
+        "rule": "DOMAIN-SUFFIX,zenodo.org",
+        "evidence": [
+          "https://zenodo.org/",
+          "https://developers.zenodo.org/"
+        ],
+        "reason": "Scholarly research repository and its documented first-party developer/API family."
+      },
+      {
+        "owner": "AI",
+        "rule": "DOMAIN-SUFFIX,braintrust.dev",
+        "evidence": [
+          "https://braintrust.dev/"
+        ],
+        "reason": "First-party AI agent evaluation/observability product and its explicitly linked custom authentication host; not a blanket rule for its authentication vendor."
+      },
+      {
+        "owner": "AI",
+        "rule": "DOMAIN-SUFFIX,consensus.app",
+        "evidence": [
+          "https://consensus.app/"
+        ],
+        "reason": "Independent first-party AI research product; its custom login host is explicitly linked by the public application page."
+      },
+      {
+        "owner": "AI",
+        "rule": "DOMAIN-SUFFIX,elicit.com",
+        "evidence": [
+          "https://elicit.com/"
+        ],
+        "reason": "Independent first-party AI scientific research service; the official page identifies AI as the product, not merely an embedded component."
+      },
+      {
+        "owner": "AI",
+        "rule": "DOMAIN-SUFFIX,researchrabbit.ai",
+        "evidence": [
+          "https://researchrabbit.ai/"
+        ],
+        "reason": "First-party AI literature review application; official page links its app and media hosts in the same controlled family."
+      },
+      {
+        "owner": "AI",
+        "rule": "DOMAIN-SUFFIX,scite.ai",
+        "evidence": [
+          "https://scite.ai/"
+        ],
+        "reason": "Independent first-party AI research application with explicitly linked documentation and content hosts."
+      },
+      {
+        "owner": "AI",
+        "rule": "DOMAIN,open.manus.ai",
+        "evidence": [
+          "https://manus.ai/"
+        ],
+        "reason": "Only the official homepage's explicitly linked first-party application host. Preserve current Manus AI ownership without claiming the whole manus.ai namespace or any tenant platform."
+      },
+      {
+        "owner": "ProxyGFW",
+        "rule": "DOMAIN-SUFFIX,astral.sh",
+        "evidence": [
+          "https://astral.sh/"
+        ],
+        "reason": "Identified first-party Python developer tooling and documentation; accepted residual-service criterion does not require blocking evidence."
+      },
+      {
+        "owner": "ProxyGFW",
+        "rule": "DOMAIN-SUFFIX,basecamp.com",
+        "evidence": [
+          "https://basecamp.com/"
+        ],
+        "reason": "First-party project management application, not an embedded tracking/widget provider or shared customer hosting suffix."
+      },
+      {
+        "owner": "ProxyGFW",
+        "rule": "DOMAIN-SUFFIX,codecov.io",
+        "evidence": [
+          "https://codecov.io/"
+        ],
+        "reason": "First-party code-coverage/testing developer service; no general web analytics vendor namespace is claimed."
+      },
+      {
+        "owner": "ProxyGFW",
+        "rule": "DOMAIN-SUFFIX,eclipse.org",
+        "evidence": [
+          "https://eclipse.org/"
+        ],
+        "reason": "First-party Eclipse Foundation software/developer service with no existing conflicting owner."
+      },
+      {
+        "owner": "ProxyGFW",
+        "rule": "DOMAIN-SUFFIX,postgresql.org",
+        "evidence": [
+          "https://postgresql.org/"
+        ],
+        "reason": "First-party open-source database project and documentation."
+      },
+      {
+        "owner": "ProxyGFW",
+        "rule": "DOMAIN-SUFFIX,pytest.org",
+        "evidence": [
+          "https://pytest.org/"
+        ],
+        "reason": "Official pytest documentation redirects to its own docs host; no Read the Docs tenant-parent expansion."
+      },
+      {
+        "owner": "Microsoft",
+        "rule": "DOMAIN,news.microsoft.com",
+        "evidence": [
+          "https://news.microsoft.com/"
+        ],
+        "reason": "Exact Microsoft Source public news website, verified by its first-party page and redirect. Do not restore microsoft.com/office.com/msn.com broad parents or infer CN download changes."
+      }
+    ],
+    "observed_pages": [
+      {
+        "url": "https://aaai.org/",
+        "retrieved_utc": "2026-10-26T18:52:50.272608+00:00",
+        "http_status": 200,
+        "sha256": "96fb24cfa5ab0fcfdc47d023585631fb89780ffd4a093d69027be23fbe8e3148",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://ojs.aaai.org/",
+        "retrieved_utc": "2026-10-26T19:00:53.216861+00:00",
+        "http_status": 200,
+        "sha256": "4827df07e16b0dbfca7025216245320bb78e2429997812b8e37505e5e2a8a6bf",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://aeaweb.org/",
+        "retrieved_utc": "2026-10-26T18:52:50.273034+00:00",
+        "http_status": 200,
+        "sha256": "782f3604285b370c26e2b9e04a760b84838b1a583d2463caf8ac9990ff8311a4",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://biorxiv.org/",
+        "retrieved_utc": "2026-10-26T18:52:51.528335+00:00",
+        "http_status": 200,
+        "sha256": "180d529d92d32e7984c904e7b82fbfb90962f4668ce32072a4f11d91590c4112",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://computer.org/",
+        "retrieved_utc": "2026-10-26T18:52:56.508512+00:00",
+        "http_status": 200,
+        "sha256": "7911bf0ebdb985abce8c5bacda6894554b6ad9aec5352741e89491a434e8b026",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://connectedpapers.com/",
+        "retrieved_utc": "2026-10-26T18:52:52.020167+00:00",
+        "http_status": 200,
+        "sha256": "3945811a40e61b807d071e516746d56fff21669559ecff5a88d6534055b41bf9",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://litmaps.com/",
+        "retrieved_utc": "2026-10-26T18:53:01.673284+00:00",
+        "http_status": 200,
+        "sha256": "df5a381afef49beb93d9b97a8870335bec277c37a6e7703f5a720ee5affddb32",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://medrxiv.org/",
+        "retrieved_utc": "2026-10-26T18:52:52.857543+00:00",
+        "http_status": 200,
+        "sha256": "d102269acc2a309002b3b14d854ef0e5393e510fd3d631fe81b256728332d297",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://nber.org/",
+        "retrieved_utc": "2026-10-26T18:52:53.029636+00:00",
+        "http_status": 200,
+        "sha256": "f2d4a22b613e21fd3936fdf2722f39d26b7852e438870a1631d8a512d408b6e0",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://info.orcid.org/",
+        "retrieved_utc": "2026-10-26T19:00:52.215395+00:00",
+        "http_status": 200,
+        "sha256": "dd47b6ee0a111ba141efb13d5ab29521e5e8828c5acfe8f99c8e6f356f4edb2d",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://orcid.org/",
+        "retrieved_utc": "2026-10-26T18:52:53.644948+00:00",
+        "http_status": 200,
+        "sha256": "109bf9346202227e25b7ee6c87774c66447bbc3b3e3d434071277223ef738ab4",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://osf.io/",
+        "retrieved_utc": "2026-10-26T18:52:53.707072+00:00",
+        "http_status": 200,
+        "sha256": "185604818b2f43bab5ffb6a9b93f481d2b739fc22853611c62d4f65322665dd3",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://psyarxiv.com/",
+        "retrieved_utc": "2026-10-26T18:52:54.048309+00:00",
+        "http_status": 200,
+        "sha256": "185604818b2f43bab5ffb6a9b93f481d2b739fc22853611c62d4f65322665dd3",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://peerj.com/",
+        "retrieved_utc": "2026-10-26T18:52:53.948536+00:00",
+        "http_status": 200,
+        "sha256": "6851eefd3281e2986844f339b33d8b02b4039b7451b00e7ef0e883365f7d41ac",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://physiology.org/",
+        "retrieved_utc": "2026-10-26T18:52:57.017908+00:00",
+        "http_status": 200,
+        "sha256": "7d14d42e3791fbb80513dc096f7d4caca971d694f4eff972af544ee25406d097",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://researchsquare.com/",
+        "retrieved_utc": "2026-10-26T18:52:55.129729+00:00",
+        "http_status": 200,
+        "sha256": "199dfc29175f4b7b8738d63c96a50b6c6386fcf2d9887681a2644173268fcc44",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://taylorandfrancis.com/",
+        "retrieved_utc": "2026-10-26T18:52:56.991244+00:00",
+        "http_status": 200,
+        "sha256": "3063aa28d2f41bfe7c73ede547c1e60873ea12b6e916c3ee771afb05e489047d",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://zenodo.org/",
+        "retrieved_utc": "2026-10-26T18:52:56.263918+00:00",
+        "http_status": 200,
+        "sha256": "f93726ce1caeea2925725f58a0db55d1f920ebbb7d27ded11fff8a7172907472",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://developers.zenodo.org/",
+        "retrieved_utc": "2026-10-26T19:00:55.578788+00:00",
+        "http_status": 200,
+        "sha256": "bbd72463dcf7e07f597ed2b145e8019fb0e861c4811a8d22e0e5d202bde69e61",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://braintrust.dev/",
+        "retrieved_utc": "2026-10-26T18:53:00.909485+00:00",
+        "http_status": 200,
+        "sha256": "bab480590fa2639db60e421d1f9939fd0b3311bdbedcff18e40de75a3175c8d7",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://consensus.app/",
+        "retrieved_utc": "2026-10-26T18:53:01.031921+00:00",
+        "http_status": 200,
+        "sha256": "8794da00f8e0a94001120bbb892504d8fda3de26f98fbc6aa34df31c7805dda4",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://elicit.com/",
+        "retrieved_utc": "2026-10-26T18:53:01.466376+00:00",
+        "http_status": 200,
+        "sha256": "bab2b1bfeddd7c6c114f2d5b54310e738e1c442f46976a0fce94e50989da0bf4",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://researchrabbit.ai/",
+        "retrieved_utc": "2026-10-26T18:53:02.040210+00:00",
+        "http_status": 200,
+        "sha256": "4c353b55db0e37d8ee6c1d2aa464cb0ec1aa3b6363ba8e8139def980456b7d12",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://scite.ai/",
+        "retrieved_utc": "2026-10-26T18:53:02.539880+00:00",
+        "http_status": 200,
+        "sha256": "3b7e677486cd83ac09d212e936823ad48891425fea9306e2b7efd6b797ded774",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://manus.ai/",
+        "retrieved_utc": "2026-10-26T18:53:02.677440+00:00",
+        "http_status": 200,
+        "sha256": "f6f2b9dc5dc321267b73d323bbc36914f1ab4f80b95f9c26ad57d02a8d382cde",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://astral.sh/",
+        "retrieved_utc": "2026-10-26T18:53:03.631458+00:00",
+        "http_status": 200,
+        "sha256": "705c8b09b3b567520fbfdcd6350dfa5a53983ec8483dccaa9695624dc703844a",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://basecamp.com/",
+        "retrieved_utc": "2026-10-26T18:53:07.261971+00:00",
+        "http_status": 200,
+        "sha256": "7019d28c4893529a586fa874567add4b8c977f59e86fc018a6c4c83fc4b4f7fb",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://codecov.io/",
+        "retrieved_utc": "2026-10-26T18:53:08.847813+00:00",
+        "http_status": 200,
+        "sha256": "292e33684b0d94b98b07bf993edf499a6a984448cd9b4f908c4dd9738b317d7f",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://eclipse.org/",
+        "retrieved_utc": "2026-10-26T18:53:10.098542+00:00",
+        "http_status": 200,
+        "sha256": "1ed1a3dc25a6da14c32a829042b5c256fcd18b0730dba4c5a87753d1ea098bcc",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://postgresql.org/",
+        "retrieved_utc": "2026-10-26T18:53:14.738423+00:00",
+        "http_status": 200,
+        "sha256": "b83fe60201cc7f3ef88a2cbcff15e825d1949c09b6c3fc18da77bc764a653c79",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://pytest.org/",
+        "retrieved_utc": "2026-10-26T18:53:17.188631+00:00",
+        "http_status": 200,
+        "sha256": "96781e73a1f051ae4f2edbb67386e38be9d3aece38ac6d4b15bc7e0a2e190857",
+        "provenance": "observed"
+      },
+      {
+        "url": "https://news.microsoft.com/",
+        "retrieved_utc": "2026-10-26T19:00:54.301715+00:00",
+        "http_status": 200,
+        "sha256": "5eabe974fd32657a265e47ec7b8ef0021914b4f1092216f023d091e537652013",
+        "provenance": "observed"
+      }
+    ],
+    "campus_consolidation": {
+      "domain": "pku-dasys.cn",
+      "provenance": "Owner-requested migration of existing private rule; not a new inferred institution allocation."
+    }
+  },
   "_readme": [
     "sources.lock.json — 机器管理层的「可重建性锁」（审计 V2 R3-1 / R3-8 S5）。",
     "",

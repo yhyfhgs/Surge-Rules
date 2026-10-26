@@ -1,0 +1,2 @@
+# Optional Windows gateway rejection selector; policy binding stays private.
+DOMAIN-SUFFIX,ipv6.microsoft.com
