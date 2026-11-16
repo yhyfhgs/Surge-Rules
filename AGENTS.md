@@ -8,8 +8,7 @@ regenerate it wholesale, or touch backups. Before nontrivial routing work read
 
 ## Tools and source boundaries
 
-- Load `~/.agents/skills/surge/SKILL.md`, falling back to
-  `/Applications/Surge.app/Contents/Resources/Skills/surge/SKILL.md`.
+- Load `/Applications/Surge.app/Contents/Resources/Skills/surge/SKILL.md`.
   [Surge CLI setup](docs/SURGE-CLI.md) covers installation and upgrades.
 - Resolve `surge-cli` from PATH, then
   `/Applications/Surge.app/Contents/Applications/surge-cli`. Read command-specific
