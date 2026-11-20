@@ -5,6 +5,34 @@ criteria. Source revisions and licenses below describe the recorded inputs;
 curated lists may differ from upstream routing decisions. Retired script/module
 development references remain in Git history.
 
+## Device profile evidence
+
+The 2026-10-05 private device-profile review uses first-party Surge Tailscale/VIF,
+Mihomo TUN, and Clash Verge Rev override documentation for platform semantics.
+PKU's DHCP guidance, institutional-access directory and software/license-server
+pages establish campus DNS/egress requirements. MathWorks, OriginLab and Wolfram
+documentation supports their account/licensing families. URLs, retrieval dates,
+and available observed HTML hashes are recorded in
+`sources.lock.json:device_profile_review`; these mutable pages are references,
+not pinned rule-list imports. `config/campus-services.json` cites evidence for
+each optional campus family, also reusing the existing reviewed Academic, PKU,
+PKUIP and ChinaDomain ownership. No private nodes or deployment details belong
+in this register. See [Device profiles](docs/DEVICE-PROFILES.md).
+The same-day DNS follow-up uses Tailscale's MagicDNS and DNS/resolv.conf FAQ:
+disabling DNS acceptance does not disable Quad100's MagicDNS responses.
+The encrypted-DNS follow-up uses Surge's encrypted-DNS semantics, Mihomo DNS
+transport documentation, and the Google, Cloudflare and AliDNS service pages.
+Eight IP-literal DoH/DoT endpoints passed local certificate-verified DNS wire
+queries; this includes the DNSPod DoT endpoint, whose product page did not expose
+usable endpoint documentation. The new resolver pools apply only to private
+device outputs; they do not alter public routing-list ownership.
+The capture/bypass correction additionally uses Surge's local-DNS and advanced
+DNS documentation and PKU's explicit-address guide (`setting_4.jsp`), which lists
+`162.105.129.122` and `162.105.129.88`. These are documented campus upstreams,
+not a claim of reachability from this off-campus Mac. Local UDP/TCP DNS probes
+and OS route inspection establish the narrower capture boundaries recorded in
+[Device profiles](docs/DEVICE-PROFILES.md#dns-capture-and-complete-bypass).
+
 ## FINAL review and portable overlays (2026-10-27)
 
 The 29 new common service rules use current first-party pages and explicit

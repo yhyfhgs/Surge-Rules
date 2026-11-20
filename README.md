@@ -20,6 +20,11 @@ Mihomo users can merge [clash/rule-providers.yaml](clash/rule-providers.yaml)
 and supply their own policy groups. Follow the [Clash deployment contract](docs/CLASH.md)
 for DNS, TUN and runtime limits. Files under `clash/` are generated.
 
+For coordinated private Mac, iOS, Windows, campus Windows and Mac mini gateway
+configurations, use the [device profile builder](docs/DEVICE-PROFILES.md). It
+maintains one private node/group inventory and validates all five outputs for
+manual distribution, without activating any client.
+
 ## Device-scoped remote lists
 
 [Optional device overlays](docs/DEVICE-OVERLAYS.md) cover campus access,

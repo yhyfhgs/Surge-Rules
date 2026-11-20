@@ -60,7 +60,9 @@ def reachable_groups(groups, roots):
     return result
 
 
-def surge_candidate(original, routing, base):
+def surge_candidate(original, routing, base, *, global_dns=None, direct_dns=None):
+    global_dns = ','.join(global_dns) if global_dns is not None else 'https://8.8.8.8/dns-query,https://1.1.1.1/dns-query'
+    direct_dns = ','.join(direct_dns) if direct_dns is not None else 'https://223.5.5.5/dns-query,https://120.53.53.53/dns-query'
     result = replace_rule_section(original, render_rules(routing, base))
     public_roots = {r['policy'] for r in routing if r['policy'] not in ('DIRECT','REJECT')} | {routing.final['policy']}
     body = section(original,'Proxy Group')[2]
@@ -98,7 +100,7 @@ def surge_candidate(original, routing, base):
     for name in dns_members:
         ipaddress.ip_address(nodes[name])
     result=set_general(result,{
-        'encrypted-dns-server':'https://8.8.8.8/dns-query, https://1.1.1.1/dns-query',
+        'encrypted-dns-server':global_dns.replace(',', ', '),
         'encrypted-dns-follow-outbound-mode':'true',
         'encrypted-dns-skip-cert-verification':'false',
         'use-local-host-item-for-proxy':'false',
@@ -111,8 +113,7 @@ def surge_candidate(original, routing, base):
         if entry['kind']=='domain':
             ref=base.rstrip('/')+'/'+entry['name']+'.list'
             servers=('system' if entry['name']=='PrivateLAN' else
-                     'https://223.5.5.5/dns-query,https://120.53.53.53/dns-query' if entry['policy']=='DIRECT' else
-                     'https://8.8.8.8/dns-query,https://1.1.1.1/dns-query')
+                     direct_dns if entry['policy']=='DIRECT' else global_dns)
             managed.append('RULE-SET:'+ref+' = server:'+servers)
     managed.append('# END managed routing DNS')
     result=replace_section(result,'Host',host_body.rstrip()+'\n'+'\n'.join(managed))

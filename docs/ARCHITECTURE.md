@@ -9,10 +9,19 @@
 | `config/mihomo-runtime.yaml` | DNS, TUN and sniffing settings for the generated Mihomo merge file |
 | `clash/` | Generated distribution files |
 | `../Surge.conf` | Private local settings and the rendered `[Rule]` section |
+| `../DeviceProfiles/inventory.json` | Private shared nodes/groups and per-device settings |
+| `config/campus-services.json` | Optional campus-only service overlay and evidence |
+| `config/device-dns.json` | Shared DoH/DoT pools for the five private device profiles |
 
 `tools/routing_manifest.py` enforces a bijection between manifest entries and
 source lists. Duplicate keys/names, missing lists, unknown fields and invalid
 metadata fail immediately. Never maintain a second list-order table.
+
+The [device profile builder](DEVICE-PROFILES.md) preserves this common order and
+adds explicit private transport and campus overlays. Campus overlays follow the
+Reject domain owner; their raw-IP exceptions use `no-resolve`. They do not change
+public list ownership. Only private desktop transport has a narrowly validated
+Tailscale process-rule exemption with a mandatory recorded reason.
 
 ## First-match routing
 

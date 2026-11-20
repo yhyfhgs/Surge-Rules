@@ -26,6 +26,32 @@
 - 发布：`52753b133521899bdf9026e41d70294bb219bce4` **PUBLISHED_AND_VERIFIED**。发布脚本在提交前对最终内容重跑全部闸门并校验远端 SHA。虽然预检 12 个分发文件已一致，仍显式 purge 全部 12 个变更路径，CF/FY 均确认；`@main` 和固定提交各 107/107 分发文件 SHA-256 一致，GitHub 12/12 变更文件一致。
 - 本机仅刷新六个现有外部规则资源，不切换/重载配置或策略组；69/69 新增规则的原生实际匹配均落到预期源表。38 个配置相关文件的 SHA-256 与操作前完全相同。生产仍用原有 `@main` URL，其他使用者下次成功刷新资源即可获取，不需要替换配置；固定旧提交及旧混合列表客户端不自动迁移。未验证每台远端设备或真实登录/支付。
 
+## [2026-10-05·DNS 接管与业务绕过纠正]
+
+- 后续按用户纠正：撤销下面记录的“实际 tailnet 后缀”收窄，所有 `ts.net` 域名统一交给 Quad100。Surge 生成 `ts.net` / `*.ts.net`，Mihomo 生成 `+.ts.net`；额外配置只能扩展专用域，不能缩小 `ts.net` 覆盖，重复子域自动合并。三份 Surge 均显式生成该 DNS 映射，iOS 保留原生 Tailscale 出站。21 项回归（含多个 tailnet、多层子域与相似域名反例）、五份原生检查及重建一致性通过；五份产物已同步，本机生效配置与真实 MagicDNS 查询验证通过。状态 **VALIDATED_NOT_PUBLISHED**。
+
+- 按用户澄清，将 DNS 接管、按域名选择专用上游、业务流量绕过分开处理。修复生成器删除旧配置中 `hijack-dns = *:53` 的问题；真实 tailnet 后缀统一生成 Quad100 映射、真实 IP 返回和系统代理排除，补齐自定义后缀的子域匹配。
+- 私有清单校园 DNS 从 `system` 改为北大官方列出的 `162.105.129.122`、`162.105.129.88`。校园 Mac mini 补齐 PKUIP 与显式额外网段的 `tun-excluded-routes`、域名/IP `skip-proxy`、真实 IP 返回；Windows 补齐额外校园域名的真实 IP 过滤。禁止校园排除与 Tailscale 或 Fake IP 地址池重叠。期刊及公网 CDN 保持校园 DIRECT，不把 CDN 网段扩大为绕过。
+- 验证：新增回归在旧逻辑中因缺失 hijack-dns 失败；修正后 20 项设备回归、五份原生语法检查及重建字节一致性通过。5,094 条公共场景断言（含 2,232 条 DNS）全过；实际 MMDB 关系检查无冲突；静态审计 P0/P1/P2 为 0，保留 3 项既有 P3；53 表、140,750 条规则和 Clash 合同一致。节点、组成员及证书保留。
+- 五份私有产物已同步，本机 Surge 已重载；生效配置与 DNS trace 确认国内/海外加密 DNS、实际 tailnet→Quad100，客户端 MagicDNS 查询返回真实 Tailscale IPv4。UDP 53 探测返回 Fake IP，但 TCP 53 返回公网真实 IP，不能报告“所有 DNS 已接管”。当前 Quad100/实际节点 IPv4 路由指向 Tailscale；IPv6 路由探测未取得可用接口，不沿用历史成功记录作本次验收。
+- 状态 **VALIDATED_NOT_PUBLISHED**。公共列表/CDN 未改；其他设备未远程部署，校园 DNS 可达性、机构授权和网关转发仍待目标机验收。
+
+## [2026-10-05·五类设备配置] 统一私有配置源与校园分流变体
+
+- 加密 DNS 扩容：按用户要求新增 DoT，五份私有配置的国内/海外解析池分别从 2 个 DoH 扩为 2 个 DoH + 2 个 DoT，由 `config/device-dns.json` 统一维护。桌面 Tailscale 控制域名增加国内直连加密 DNS 映射；保留 MagicDNS、局域网及校园专用解析。八个端点均通过本机证书校验及 DNS 报文查询；16 项设备回归、五份原生检查、重建一致性通过。公共规则候选 5,094 条场景（含 2,232 条 DNS 断言）全过；设备覆盖中的既有 Tailscale DIRECT 例外由设备测试验证，不套用公共 Proxy/下载预期。本机重载后实际观察到国内 DoT、海外 DoH 和 Quad100 分流，双栈与完整域名 SSH 握手仍正常。状态 **VALIDATED_NOT_PUBLISHED**；其他设备产物已更新，未远程部署。
+
+- SSH 实测修正：Mac/Mac mini 生成器不再把 Tailscale IPv4 网段与额外 IPv4 子网写入 `tun-excluded-routes`，并清理底稿中的同类残留。本机原排除项生成了物理网关路由，抢走 Tailscale IPv4；保留现有 IPv6 排除，因为实测同时移除会使 IPv6 落入 Surge 默认路由。14 项回归、五份原生语法检查及重建一致性验证通过；本机重载后 IPv4、IPv6、完整 MagicDNS 名均返回远端 SSH 握手。手机与两个 Windows 配置字节不变；Mac mini 文件已更新但未远程部署。原 SSH 别名的子网目标仍超时，未验证登录认证。状态 **VALIDATED_NOT_PUBLISHED**，公共列表/CDN 未改。
+
+- 节点换址复核：修复导入器只清理当前参考端点、遗漏其他参考中历史端点的问题。跨所有参考收集历史地址后统一清理绕行设置；现有私有清单同步移除已退休端点残留。13 项设备回归（含旧移动端地址残留到新桌面绕行的用例）及五份原生语法检查通过；真实节点和 IP 仅保留在私有清单，不写入公开记录。
+
+- 后续 DNS 裁决：桌面 Tailscale 关闭 DNS 接管（`accept-dns=false`），普通 DNS 统一由 Surge/Mihomo 管理，只有 MagicDNS 定向查询 Quad100；校园 DNS 保持校园上游。新增手动执行的 macOS/Windows 开关脚本及生成元数据，明确 FQDN 与系统搜索后缀的区别。更新后 12 项设备回归及五份原生语法检查通过；开关脚本未在真实目标机执行。
+
+- 按用户确认：本机 Mac、手机、普通 Windows、校园 Windows、校园 Mac mini 网关分别生成；两个校园设备实际位于校内，Mac mini 使用与本机相同的参考配置。
+- 新增私有配置生成器：节点地址与组成员单一维护，Surge/Clash 保留各自协议参数；私有材料和输出强制在公开仓库外。手机原生 Tailscale 与桌面 Tailscale 放行分开生成；传输进程例外限定白名单且必须记录理由，不放宽公共列表禁令。
+- 校园变体在 Reject 后添加 PKU、Academic 与有来源的期刊、软件服务直连层，保留校园 DNS；Windows 额外排除校园 IP 的 TUN 接管。Clash Verge Rev 的系统代理关闭、TUN 开启偏好独立提供，严格路由关闭以兼容独立 Tailscale。
+- 验证：三份 Surge 和两份 Mihomo 原生语法检查通过；11 项设备回归、5,094 条公共场景断言（含 2,232 条 DNS 断言）、84 条对抗断言全过；53 表、140,750 条源规则与 Clash 一致；真实 Country/ASN MMDB 分析无遮蔽、顺序冲突或拓扑循环；静态审计无 P0/P1/P2，保留 3 个既有 P3。再生成逐字节一致，原有节点协议参数及证书保留检查通过。
+- 状态：**VALIDATED_NOT_PUBLISHED**。未改公共分流源或 CDN 产物，未切换/重载活动配置；手机、Windows、Mac mini 上的真实校园识别与授权访问待手动分发后验收。
+
 ## [2026-09-28·自有站点直连] fhxgs.cc 整域并入 Domestic
 
 - 用户裁决：自有站点 `fhxgs.cc` 整域走直连，在 Domestic 新增 `DOMAIN-SUFFIX,fhxgs.cc`。此前它没有归属、落 FINAL。经代理出口访问新建子域 `film.confluo.fhxgs.cc` 时，出口侧解析器持续返回 DNS Failed；公共解析（Google、Cloudflare、AliDNS、DNSPod）均能正确解析，问题只在出口侧。

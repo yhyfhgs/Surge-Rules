@@ -1,7 +1,7 @@
 # Surge rules development
 
 This is the public `surge-rules` repository; commands run here. The active
-`../Surge.conf` and `../Backup/` are private: never publish the profile,
+`../Surge-Mac.conf` and `../Backup/` are private: never publish the profile,
 regenerate it wholesale, or touch backups. Before nontrivial routing work read
 [Architecture](docs/ARCHITECTURE.md), [Maintenance](docs/MAINTENANCE.md),
 [Current decisions](docs/DECISIONS.md) and the affected source.
@@ -22,6 +22,12 @@ regenerate it wholesale, or touch backups. Before nontrivial routing work read
   review the diff before replacing only the generated `[Rule]` section.
   `tools/prepare_profiles.py` handles explicitly scoped DNS/group migrations
   while preserving private nodes and certificates.
+  For the five manually distributed device profiles, follow
+  [Device profiles](docs/DEVICE-PROFILES.md): update the shared private inventory
+  outside this repository and rebuild all variants after routing or node changes.
+  Do not separately edit generated device configurations. Private desktop
+  Tailscale transport process exceptions are permitted only by that builder's
+  explicit allowlist with a recorded reason; public source lists remain exempt-free.
 - Regenerate Clash with `tools/surge2clash.py`, ChinaDomain with its guarded
   `tools/regen_chinadomain.py` workflow, and ChinaIP with locked
   `tools/rebuild.py --id blackmatrix7_china_ip`. Preserve ChinaIP exclusions,

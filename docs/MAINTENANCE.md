@@ -127,6 +127,12 @@ and diff checks; run affected existing tests for tool changes.
 
 ## Active profile and publication
 
+For the five manually distributed device configurations, rebuild with
+`tools/device_profiles.py` after changing common routing or the private node
+inventory. Follow [Device profiles](DEVICE-PROFILES.md) for the single-source
+workflow, native checks, private output location, and manual activation. The
+builder does not publish public lists or replace an active profile.
+
 For rule-only changes, review and replace the generated `[Rule]` section. For
 explicitly scoped DNS/group migrations, prepare both clients with `tools/prepare_profiles.py`: it
 updates generated routing and ordered DNS mappings, removes DIRECT from proxy

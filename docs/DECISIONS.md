@@ -75,6 +75,78 @@ Current source pins and first-party evidence are in [Sources](../SOURCES.md).
 Batch validation and publication results are recorded in the
 [Changelog](../CHANGELOG.md).
 
+## Device profile standardization (2026-10-05)
+
+The owner requested five complete private configurations for manual distribution:
+macOS with independent Tailscale, iOS with native Surge Tailscale, Windows with
+independent Tailscale, campus Windows, and a campus Mac mini gateway. Both campus
+devices physically use the campus network; Mac mini starts from the same private
+base as the local Mac. No remote-campus exit is inferred.
+
+One private inventory now supplies shared node addresses and group membership,
+retaining protocol-specific Snell/VLESS parameters and device-local certificate
+material. Campus overlays preserve Reject priority and explicitly route academic,
+institutional-login and evidenced software families through campus DIRECT.
+Desktop-only, reasoned Tailscale transport exceptions prevent nested capture;
+the public source-list process-rule prohibition is unchanged. Windows uses TUN
+with strict routing off, plus separate application preferences for system proxy
+off. See [Device profiles](DEVICE-PROFILES.md) for generation and deployment.
+
+The owner's DNS follow-up makes Surge/Mihomo the desktop DNS owner. Independent
+Tailscale clients use `accept-dns=false`; only MagicDNS queries are explicitly
+forwarded to Quad100. Tailnet-wide MagicDNS remains enabled. The build ships
+manual deployment scripts because a proxy profile cannot change Tailscale's
+application preference. iOS keeps native Surge Tailscale resolution.
+
+The subsequent encrypted-DNS request adds DoT and expands each public resolver
+pool from two to four endpoints (two DoH, two DoT), shared by all five private
+outputs through `config/device-dns.json`. Global and domestic pools remain
+separate. Desktop Tailscale control DNS uses the direct encrypted pool; MagicDNS,
+LAN and campus resolver exceptions remain intact. All eight endpoints passed
+certificate-verified wire queries locally. After reloading the local Mac,
+resolver traces demonstrated domestic DoT, global DoH and dedicated MagicDNS;
+SSH banners remained available over both Tailscale address families and the full
+peer name. Sixteen device regressions and all five native checks passed; the
+public-rule candidate passed all 5,094 scenario assertions, including 2,232 DNS
+assertions. Other devices still require import and runtime verification.
+
+The subsequent local SSH diagnosis found that the generated IPv4 Tailscale
+exclusion installed a physical-gateway route that won over Tailscale. Mac variants
+now remove IPv4 tailnet/subnet exclusions while retaining the existing IPv6
+exclusions: removing both families also broke IPv6 in the live check. See the
+[device routing boundary](DEVICE-PROFILES.md#tailscale-boundaries).
+
+The owner's next clarification separates DNS capture from application bypass:
+queries should enter Surge/Mihomo, select their dedicated upstream by domain,
+and only then let selected application destinations bypass capture. The builder
+now retains `hijack-dns = *:53`, which existed in the imported Mac base and active
+profile but was being deleted on regeneration. The owner's follow-up explicitly
+requires the whole `ts.net` namespace to use Quad100, replacing the previous
+tailnet-specific narrowing. All five profiles derive domain patterns instead of
+enumerating tailnets or devices; desktop real-IP and bypass selectors use the
+same scope. The private inventory uses PKU's documented `162.105.129.122` /
+`162.105.129.88` instead of `system`.
+Campus Mac mini now pairs PKUIP/extra-CIDR TUN exclusions with hostname/IP
+`skip-proxy` and real-IP exceptions; Windows includes extra campus domains in
+its real-IP filter. Conflicting VPN or fake-IP exclusions fail generation.
+Public publisher/CDN traffic retains its campus DIRECT overlay.
+
+Status is **VALIDATED_NOT_PUBLISHED**. Twenty-one device regressions, all five native
+checks, output byte comparison, 5,094 public scenario assertions (2,232 DNS),
+actual-MMDB relationships and the Clash contract passed. Static audit retains
+three existing P3 findings and no P0/P1/P2. All five private outputs were rebuilt
+and the local Mac reloaded. Effective configuration confirms DNS capture and
+the complete `ts.net` mapping; live traces select domestic/global encrypted pools
+and Quad100, and the client receives a real MagicDNS address.
+
+The local UDP-53 probe returns a fake IP, but TCP-53 returns public real IPs;
+universal DNS interception is therefore **not established**. Quad100 and a real
+peer's IPv4 route use Tailscale's interface. The current IPv6 route probe did not
+return a usable interface; earlier successful IPv6 observations are historical,
+not verification of this reload. Remote profile deployment, campus-resolver
+reachability, institutional access and gateway forwarding remain unverified.
+Public routing lists and CDN artifacts are unchanged.
+
 Consolidated on 2026-09-13 against the v2 sources and updated for the
 2026-09-26 upstream refresh. This document retains the
 decisions and unresolved evidence that still affect maintenance. List content,

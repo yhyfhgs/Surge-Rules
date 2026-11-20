@@ -99,6 +99,7 @@ python3 tests/engine.py --selftest
 python3 tests/audit.py --selftest
 python3 tests/analyze_rules_selftest.py
 python3 tests/routing_v2_test.py
+python3 tests/device_profiles_test.py
 python3 tests/expiry_safety_test.py
 python3 tests/realworld.py --selftest
 python3 tools/sort_lists.py --selftest

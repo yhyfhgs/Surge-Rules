@@ -5506,6 +5506,189 @@
     ],
     "note": "415 immutable inputs at 13 API-verified branch heads across 11 repositories; all independently re-fetched with fetch_locked verification. 342 byte-identical, 57 rule-content changes, 13 order-only changes, 3 code/documentation changes. Evidence is not policy: curated rule-by-rule adoption preserves existing ownership and exclusions. Earlier ai_review pins remain historical evidence; these inputs contain the current AI comparison."
   },
+  "device_profile_review": {
+    "review_date": "2026-10-05",
+    "decision": "Five private manually distributed profiles share one node/group inventory. Campus variants assume physical PKU campus egress. Public rule ownership is unchanged.",
+    "references": [
+      {
+        "id": "surge-tailscale",
+        "provenance": "observed",
+        "url": "https://manual.nssurge.com/policies/tailscale.html",
+        "retrieved_at": "2026-10-05",
+        "note": "Reviewed through web browser; local HTML fetch unavailable, no content hash claimed."
+      },
+      {
+        "id": "surge-general",
+        "provenance": "observed",
+        "url": "https://manual.nssurge.com/profile/general.html",
+        "retrieved_at": "2026-10-05",
+        "note": "Reviewed through web browser; local HTML fetch unavailable, no content hash claimed."
+      },
+      {
+        "id": "mihomo-tun",
+        "provenance": "observed",
+        "url": "https://wiki.metacubex.one/config/inbound/tun/",
+        "final_url": "https://wiki.metacubex.one/config/inbound/tun/",
+        "retrieved_at": "2026-10-05",
+        "sha256": "1628c54c5026f90317ce1e91f0fa1d4b4e7caa7097ccd0c9f01f4da3bbf2cc3f",
+        "size": 105288
+      },
+      {
+        "id": "verge-overrides",
+        "provenance": "observed",
+        "url": "https://www.clashverge.dev/guide/extend.html",
+        "final_url": "https://www.clashverge.dev/guide/extend.html",
+        "retrieved_at": "2026-10-05",
+        "sha256": "909b9a56fa9c93c00e8b6f4584f8da8fa7d52e90b21b636ff43864f05d3db222",
+        "size": 48920
+      },
+      {
+        "id": "pku-carsi",
+        "provenance": "observed",
+        "url": "https://www.lib.pku.edu.cn/portal/cn/news/0000002139",
+        "final_url": "https://www.lib.pku.edu.cn/portal/cn/news/0000002139",
+        "retrieved_at": "2026-10-05",
+        "sha256": "aec88f4492d4cc6415984d06629744e6609c25feb5c94d0c67cef5cc24b2d604",
+        "size": 200863
+      },
+      {
+        "id": "pku-software",
+        "provenance": "observed",
+        "url": "https://www.lib.pku.edu.cn/portal/cn/zy/software",
+        "final_url": "https://www.lib.pku.edu.cn/portal/cn/zy/software",
+        "retrieved_at": "2026-10-05",
+        "sha256": "5acde20c493a0f61e2d72bb115feb4936d290bfe1eb3e9758debbd178b19fa91",
+        "size": 172818
+      },
+      {
+        "id": "pku-dhcp",
+        "provenance": "observed",
+        "url": "https://its.pku.edu.cn/setting_5.jsp",
+        "final_url": "https://its.pku.edu.cn/setting_5.jsp",
+        "retrieved_at": "2026-10-05",
+        "sha256": "7f7b95b88cf34843eae6a39ff9d8cb9a238bf1c53703a7ed39a992c929357502",
+        "size": 12808
+      },
+      {
+        "id": "mathworks-install",
+        "provenance": "observed",
+        "url": "https://www.mathworks.com/help/install/install-products.html",
+        "retrieved_at": "2026-10-05",
+        "note": "Reviewed through web browser; local HTML fetch unavailable, no content hash claimed."
+      },
+      {
+        "id": "origin-license",
+        "provenance": "observed",
+        "url": "https://docs.originlab.com/license/concurrent-additional-info/",
+        "final_url": "https://docs.originlab.com/license/concurrent-additional-info/",
+        "retrieved_at": "2026-10-05",
+        "sha256": "ed1e96f9ce9c752dcd58e42621a91ef5298092524bcbf5eba5766193b40073e7",
+        "size": 44088
+      },
+      {
+        "id": "wolfram-license",
+        "provenance": "observed",
+        "url": "https://support.wolfram.com/234",
+        "retrieved_at": "2026-10-05",
+        "note": "Reviewed through web browser; local HTML fetch unavailable, no content hash claimed."
+      },
+      {
+        "id": "tailscale-dns-acceptance",
+        "provenance": "observed",
+        "url": "https://tailscale.com/docs/reference/faq/dns-resolv-conf",
+        "retrieved_at": "2026-10-05",
+        "final_url": "https://tailscale.com/docs/reference/faq/dns-resolv-conf",
+        "sha256": "9e052ba06a98f4854af86f19426f0b6620fa2336f69a179755257b19ca8676c2",
+        "size": 211241
+      },
+      {
+        "id": "tailscale-magicdns",
+        "provenance": "observed",
+        "url": "https://tailscale.com/docs/features/magicdns",
+        "retrieved_at": "2026-10-05",
+        "final_url": "https://tailscale.com/docs/features/magicdns",
+        "sha256": "4dafc8bd0d118816d02ee1c0e9eacd738f0b659eb5b310d034197669f96b3d4c",
+        "size": 246672
+      },
+      {
+        "id": "surge-encrypted-dns",
+        "provenance": "observed",
+        "url": "https://manual.nssurge.com/dns/encrypted-dns.html",
+        "retrieved_at": "2026-10-05",
+        "note": "Reviewed through web tool; mutable documentation, no content hash claimed."
+      },
+      {
+        "id": "mihomo-dns-types",
+        "provenance": "observed",
+        "url": "https://wiki.metacubex.one/config/dns/type/",
+        "retrieved_at": "2026-10-05",
+        "note": "Reviewed through web tool; mutable documentation, no content hash claimed."
+      },
+      {
+        "id": "google-dot",
+        "provenance": "observed",
+        "url": "https://developers.google.com/speed/public-dns/docs/dns-over-tls",
+        "retrieved_at": "2026-10-05",
+        "note": "Reviewed through web tool; mutable documentation, no content hash claimed."
+      },
+      {
+        "id": "cloudflare-dot",
+        "provenance": "observed",
+        "url": "https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-tls/",
+        "retrieved_at": "2026-10-05",
+        "note": "Reviewed through web tool; mutable documentation, no content hash claimed."
+      },
+      {
+        "id": "alidns-encrypted",
+        "provenance": "observed",
+        "url": "https://www.alidns.com/",
+        "retrieved_at": "2026-10-05",
+        "note": "Reviewed through web tool; mutable documentation, no content hash claimed."
+      },
+      {
+        "id": "pku-explicit-dns",
+        "provenance": "observed",
+        "url": "https://its.pku.edu.cn/setting_4.jsp",
+        "retrieved_at": "2026-10-05",
+        "note": "Reviewed through web tool; mutable documentation, no content hash claimed."
+      },
+      {
+        "id": "surge-local-dns",
+        "provenance": "observed",
+        "url": "https://manual.nssurge.com/dns/local-dns-mapping.html",
+        "retrieved_at": "2026-10-05",
+        "note": "Reviewed through web tool; mutable documentation, no content hash claimed."
+      },
+      {
+        "id": "surge-dns-capture",
+        "provenance": "observed",
+        "url": "https://manual.nssurge.com/dns/advanced.html",
+        "retrieved_at": "2026-10-05",
+        "note": "Reviewed through web tool; mutable documentation, no content hash claimed."
+      }
+    ],
+    "note": "Observed first-party documentation, not upstream rule-list imports or reproducible build inputs. Service overlay evidence also references existing reviewed lists.",
+    "dns_decision": "Desktop accept-dns=false; Surge/Mihomo owns general DNS and forwards only MagicDNS to Quad100. Client preference applied manually, not by importing a proxy profile.",
+    "encrypted_dns_decision": "Private device outputs use config/device-dns.json: two DoH and two DoT endpoints per global/direct pool. TLS verification enabled. Desktop Tailscale control DNS uses direct encrypted upstreams; MagicDNS, LAN and campus system DNS keep dedicated paths.",
+    "encrypted_dns_validation": {
+      "observed_at": "2026-10-05",
+      "method": "Local DNS wire queries with certificate and IP identity verification; success RCODE and nonempty answers for example.com. This does not establish availability on other target networks.",
+      "doh": [
+        "https://8.8.8.8/dns-query",
+        "https://1.1.1.1/dns-query",
+        "https://223.5.5.5/dns-query",
+        "https://120.53.53.53/dns-query"
+      ],
+      "dot": [
+        "tls://8.8.4.4",
+        "tls://1.0.0.1",
+        "tls://223.6.6.6",
+        "tls://1.12.12.12"
+      ],
+      "dnspod_note": "DoT endpoint verified live, including certificate IP identity; product page offered no extractable endpoint documentation."
+    },
+    "dns_capture_decision": "Restore hijack-dns = *:53; select upstreams through ordered Host/list mappings. Send the entire ts.net namespace to Quad100 through generated suffix/wildcard selectors on all five profiles; additional private namespaces cannot narrow ts.net coverage. Campus inventory uses documented 162.105.129.122 and 162.105.129.88, subject to target-network verification. Return real IPs and pair campus CIDR exclusions with hostname proxy bypass. No universal TCP/IPv6/application-encrypted-DNS interception claim."
+  },
   "routing_refresh_20261009": {
     "provenance": "observed",
     "scope": "Existing list content only; no configuration, manifest, list-order, resolver, policy-group or provider-URL changes.",
