@@ -367,6 +367,16 @@ The remaining FINAL traffic is intentional:
 
 ## Latest recorded release and open verification
 
+Routing commit `02dd50c` is **PUBLISHED_AND_VERIFIED** (2026-11-21): 53 lists,
+141,192 source rules, 17 optional overlays (36 artifacts), 5,595 scenario
+assertions including 2,401 DNS assertions. The release gates passed with actual
+Country/ASN MMDBs; static audit kept only the three existing P3 notices. The
+engine self-test now expects the residential exit B topology that followed the
+2026-11-15 retirement of exit A. All 8 changed CDN paths were purged and matched
+afterwards. The local Mac and the campus Mac mini loaded the new overlay; IPv6
+literal destinations are rejected at handshake while ChinaIP and campus IPv6
+stay DIRECT.
+
 Routing commit `52753b133521899bdf9026e41d70294bb219bce4` is
 **PUBLISHED_AND_VERIFIED** (2026-10-09): 53 lists, 140,817 source rules,
 5,388 scenario assertions including 2,345 DNS assertions, and 84 adversarial
