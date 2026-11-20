@@ -25,7 +25,7 @@ NAMES = {
     "TailscaleProxy", "TailscaleCampusProxy", "TailscaleControl", "TailscaleNetwork",
     "TailscaleNetworkIP", "CampusNetwork", "CampusNetworkIP", "CampusServices",
     "CloudflareTunnel", "CloudflareTunnelIP", "WindowsGateway", "WindowsGatewayPorts",
-    "WindowsReject", "UKAI", "TailscaleWebsiteDNS", "CampusExtraIP",
+    "WindowsReject", "UKAI", "TailscaleWebsiteDNS", "CampusExtraIP", "IPv6Any",
 }
 
 
@@ -527,6 +527,22 @@ DOMAIN-SUFFIX,x.ai"""
                 data["families"][0]["evidence"] = ["/tmp/private-evidence"]
             path.write_text(json.dumps(data), encoding="utf-8")
             self.invalid()
+
+    def test_ipv6_any_selects_only_ipv6_literals_and_stays_exact(self):
+        self.assertEqual(("IP-CIDR6,::/0,no-resolve",), tuple(self.rules("IPv6Any")))
+        rule = self.rules("IPv6Any")[0]
+        self.assertTrue(matches(rule, address="2001:db8::1"))
+        self.assertTrue(matches(rule, address="2a03:2880::1"))
+        self.assertFalse(matches(rule, address="192.0.2.1"))
+        self.assertFalse(matches(rule, host="example.com"))
+        self.assertEqual("RULE-SET," + overlay.CDN_BASE + "/overlays/surge/IPv6Any.list,REJECT,no-resolve",
+                         overlay.render_call("IPv6Any", "REJECT", root=self.root))
+
+    def test_whole_ipv6_exception_does_not_admit_other_wide_ranges(self):
+        for cidr in ("::/1", "fc00::/7", "fe80::/10", "fd00::/8"):
+            with self.assertRaises(overlay.OverlayError):
+                overlay._network(cidr, 6)
+        self.assertEqual("::/0", str(overlay._network("::/0", 6)))
 
     def test_uk_wildcard_scope_does_not_admit_other_api_hosts(self):
         self.append("overlays/sources/UKAI.list", "DOMAIN,unreviewed.googleapis.com")

@@ -244,5 +244,52 @@
       {"ip": "2a04:3e07:ffff:ffff:ffff:ffff:ffff:ffff"}
     ],
     "assert": {"policy": "Final", "routing_complete": true}
+  },
+  {
+    "name": "refresh_20261121_chinaip_new_and_retained_boundaries",
+    "desc": "2026-11-21：登记与真实 MMDB 均为 CN 的五段新增首尾走直连；按新鲜 RDAP 保留的香港与广东旧网段及 2026-10-09 决定保留的 /48 仍走直连",
+    "requests": [
+      {"ip": "45.251.248.0"},
+      {"ip": "45.251.249.255"},
+      {"ip": "160.202.210.0"},
+      {"ip": "160.202.211.255"},
+      {"ip": "2402:7da0::"},
+      {"ip": "2402:7e20::1"},
+      {"ip": "2402:7ee0::1"},
+      {"ip": "8.210.152.255"},
+      {"ip": "183.91.63.0"},
+      {"ip": "183.91.63.255"},
+      {"ip": "202.92.8.0"},
+      {"ip": "202.92.15.255"},
+      {"ip": "2a04:3e00:1002::1"}
+    ],
+    "assert": {"policy": "DIRECT", "routing_complete": true}
+  },
+  {
+    "name": "refresh_20261121_overseas_cloud_additions_withheld",
+    "desc": "2026-11-21：上游新增的境内企业海外云网段（MMDB/RDAP 非 CN）不获直连；外国登记的上游删除项随之移出",
+    "requests": [
+      {"ip": "5.181.224.0"},
+      {"ip": "8.210.0.0"},
+      {"ip": "8.212.0.0"},
+      {"ip": "8.212.104.0"},
+      {"ip": "47.75.173.181"},
+      {"ip": "47.89.29.9"},
+      {"ip": "163.223.217.1"},
+      {"ip": "202.92.0.1"},
+      {"ip": "2804:1e48:9002::1"}
+    ],
+    "assert": {"policy": "Final", "routing_complete": true}
+  },
+  {
+    "name": "refresh_20261121_chinadomain_additions",
+    "desc": "2026-11-21 ChinaDomain 只增不删刷新（解析率 72.1% 过闸）新收录的 CN 域名走直连",
+    "requests": [
+      {"host": "021julaian.com"},
+      {"host": "4399dev.com"},
+      {"host": "51zjb.com"},
+      {"host": "55xiu.com"}
+    ],
+    "assert": {"policy": "DIRECT", "no_dns_leak": true}
   }
 ]

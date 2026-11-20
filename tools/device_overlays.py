@@ -31,9 +31,10 @@ DOMAIN_TYPES = {"DOMAIN", "DOMAIN-SUFFIX", "DOMAIN-WILDCARD"}
 IP_TYPES = {"IP-CIDR", "IP-CIDR6"}
 COMMON_SOURCES = {"lists/PKU.list": "domain", "lists/Academic.list": "domain",
                   "lists/PKUIP.list": "ip"}
-# Public protocol allocations and the one owner-approved campus destination.
-# Never allow a general private range or an individual tailnet peer here.
-NON_GLOBAL = {"100.64.0.0/10", "fd7a:115c:a1e0::/48", "10.129.167.101/32"}
+# Public protocol allocations, the one owner-approved campus destination, and
+# the whole IPv6 space used only as a positive AND operand for rejecting IPv6
+# literal destinations. Never allow a general private range or a tailnet peer.
+NON_GLOBAL = {"100.64.0.0/10", "fd7a:115c:a1e0::/48", "10.129.167.101/32", "::/0"}
 NAME = re.compile(r"[A-Za-z][A-Za-z0-9]*\Z")
 LABEL = re.compile(r"[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\Z")
 

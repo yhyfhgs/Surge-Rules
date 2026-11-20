@@ -27,7 +27,9 @@ The standard `100.64.0.0/10` and `fd7a:115c:a1e0::/48` protocol allocations are
 public selectors, not peer inventory. The owner explicitly approved the single
 campus destination `10.129.167.101/32` for this public overlay. Its source comment
 is deliberately neutral; no server identity or purpose is published. These are
-narrow validation exceptions, not permission to publish other private networks.
+narrow validation exceptions, not permission to publish other private networks. `::/0` is admitted only for the IPv6Any guard
+selector, which private profiles always combine with LAN, campus and China
+exclusions; it never becomes a routing owner.
 
 A policy-free public selector cannot preserve a removed client guard by itself.
 On a gateway, keep the existing private source/listener condition around the
@@ -60,6 +62,7 @@ Every row produces both `overlays/surge/<Name>.list` and
 | `CampusExtraIP` | ip | Only the owner-approved extra campus destination; an early raw-address exception, never a replacement for resolving PKUIP. |
 | `CampusNetworkIP` | ip | `lists/PKUIP.list` + CampusExtraIP; add/preserve `no-resolve` on every leaf for physical-campus variants. |
 | `UKAI` | domain | The exact 30 existing UK inline AI exceptions, retaining their order and match types. |
+| `IPv6Any` | ip | The whole IPv6 space (`::/0`) with native `no-resolve`; only the positive operand of an AND that rejects IPv6 literal destinations outside LAN, campus and China. |
 
 The archived campus domain set is already completely represented by PKU,
 Academic, and the campus-service configuration: there are **no residual domain
@@ -132,7 +135,7 @@ CIDRs, destination ports, and the two explicitly supported port conjunction
 shapes are portable here. No source-IP, process, arbitrary logical expression,
 GEOIP/ASN, ruleset include, keyword, or protocol-only fallback is accepted.
 Private/local namespaces, individual `ts.net` descendants, and non-global CIDRs
-other than the three documented exceptions are rejected.
+other than the four documented exceptions are rejected.
 
 The curated public scopes are reviewed admission boundaries, not a heuristic
 that can determine who owns every internet hostname. Review any manifest scope
@@ -263,7 +266,7 @@ path, as the existing builders do) is:
 |---|---|
 | `load_manifest(root=ROOT)` | Strictly validated entry dictionaries in manifest order. |
 | `compose(root=ROOT)` | `(entries, rules_by_name, transitive_input_paths_by_name)`; rules are policy-free Surge strings. |
-| `build(root=ROOT)` | Pure mapping `{repository_relative_output_path: text}` for all 34 artifacts. No installation. |
+| `build(root=ROOT)` | Pure mapping `{repository_relative_output_path: text}` for all 36 artifacts. No installation. |
 | `ordered_selection(names, client, root=ROOT)` | Selected entries in manifest order; validates intended clients and mutually exclusive alternatives. Does not insert common rules or select composition dependencies as extra calls. |
 | `provider_name(name)` | `DeviceOverlay<Name>`. |
 | `render_call(name, policy, mihomo=False, root=ROOT)` | A single caller-policy RULE-SET call using the official URL or provider ID; IP calls include `no-resolve`. Does not apply private guards or placement. |

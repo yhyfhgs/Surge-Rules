@@ -2,13 +2,14 @@
   "version": 1,
   "inputs": {
     "config/campus-services.json": "bb937480fe7b4a134236739d5fcb39fee9270b290b8798c42ad085b5df03e2c3",
-    "config/device-overlays.json": "82c5d36c049c475dae6ce73f29c69f0c54edfd09d57bf7add8ef1c9819f006b9",
+    "config/device-overlays.json": "60b601de38aa31588e89812447faed3f8fcab6e126555f0401dcfecbc6ebb401",
     "lists/Academic.list": "25e32a2d06cd4dff77e773f470ecb3753aa2e399ba49587f4160f238d4806c09",
     "lists/PKU.list": "036b019165d1f8dbc14761fe8fb739a6e6414d99368f8953473e21883b03a520",
     "lists/PKUIP.list": "8473e96959b772b6ef8f9eb10fe34320bb1c14cd70d1371aaf8084e0549d01eb",
     "overlays/sources/CampusNetworkExtraIP.list": "78b7eed6af8d3f77434b1899d15251527a98f251d68723c4dae1a04241bc7e0e",
     "overlays/sources/CloudflareTunnel.list": "b27cf2d092f11a0c2b996be2c199ac948fabffda5578020e23fcf44795e9ea51",
     "overlays/sources/CloudflareTunnelIP.list": "f1b2d6440f6f802afb746ce5d48895ab3bb74f760b2d366aa78ab3404640638a",
+    "overlays/sources/IPv6Any.list": "8ca29989bb45e0539f35cb9072169479b017bcc0d23911b342e781dacaf5492c",
     "overlays/sources/TailscaleCampusRelays.list": "bab5884c3a2b894d08e36e4f397ada479800f0498d6ea3b84e91e70ffe0a478f",
     "overlays/sources/TailscaleControl.list": "c000c86a6545c9a82962ff8a4ea5d7903e35fcca9ac640e06d6f33a30b367a03",
     "overlays/sources/TailscaleNetwork.list": "8fcb60435ab7bf58096ab8319614f831533565513e8423d25d37aef986434ff6",
@@ -471,6 +472,34 @@
         "path": "overlays/clash/UKAI.list",
         "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/UKAI.list",
         "provider": "DeviceOverlayUKAI"
+      }
+    },
+    {
+      "name": "IPv6Any",
+      "kind": "ip",
+      "clients": [
+        "surge-macos",
+        "surge-ios",
+        "mihomo-windows"
+      ],
+      "reason": "Whole IPv6 address space as the positive operand for rejecting IPv6 literal destinations outside LAN, campus and China before proxy rules, so IPv4-only exits never receive IPv6 requests; never initiate resolution.",
+      "placement": "before-common",
+      "before": [],
+      "conflicts": [],
+      "inputs": [
+        "config/device-overlays.json",
+        "overlays/sources/IPv6Any.list"
+      ],
+      "rule_count": 1,
+      "surge": {
+        "path": "overlays/surge/IPv6Any.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/surge/IPv6Any.list",
+        "no_resolve": true
+      },
+      "clash": {
+        "path": "overlays/clash/IPv6Any.list",
+        "url": "https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/IPv6Any.list",
+        "provider": "DeviceOverlayIPv6Any"
       }
     }
   ]

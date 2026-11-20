@@ -196,6 +196,18 @@
       "sources": [
         {"type": "file", "path": "overlays/sources/UKAI.list", "public_suffixes": ["gemini.google.com", "gemini.google", "aistudio.google.com", "makersuite.google.com", "alkalimakersuite-pa.clients6.google.com", "generativelanguage.googleapis.com", "notebooklm.google.com", "notebooklm.google", "labs.google", "aisandbox-pa.googleapis.com", "jules.google.com", "jules.google", "antigravity.google", "cloudcode-pa.googleapis.com", "daily-cloudcode-pa.googleapis.com", "aiplatform.googleapis.com", "*-aiplatform.googleapis.com", "gemini-api-docs-mcp.dev", "copilot.microsoft.com", "copilot.com", "copilot.cloud.microsoft", "m365copilot.com", "copilotprodattachments.blob.core.windows.net", "sydney.bing.com", "githubcopilot.com", "copilot-proxy.githubusercontent.com", "meta.ai", "llama.com", "grok.com", "x.ai"], "cidrs": [], "ports": []}
       ]
+    },
+    {
+      "name": "IPv6Any",
+      "kind": "ip",
+      "clients": ["surge-macos", "surge-ios", "mihomo-windows"],
+      "reason": "Whole IPv6 address space as the positive operand for rejecting IPv6 literal destinations outside LAN, campus and China before proxy rules, so IPv4-only exits never receive IPv6 requests; never initiate resolution.",
+      "placement": "before-common",
+      "before": [],
+      "conflicts": [],
+      "sources": [
+        {"type": "file", "path": "overlays/sources/IPv6Any.list", "public_suffixes": [], "cidrs": ["::/0"], "ports": []}
+      ]
     }
   ]
 }

@@ -1,6 +1,26 @@
 # Current routing decisions
 
-## FINAL enrichment and remote device overlays (2026-10-27)
+## Machine-layer refresh and IPv6 literal guard (2026-11-21)
+
+ChinaIP follows blackmatrix7 `0b6897dc` only where RDAP registration and the
+actual Country MMDB both establish CN across the whole range. The new upstream
+mainly adds overseas cloud ranges of mainland providers; routing them DIRECT
+would send sites hosted in the US, Singapore, Hong Kong or Europe outside the
+proxy, so those 359 additions stay held back as new coverage. Five additions are
+admitted. The existing HK retention principle and hard exclusions are unchanged:
+two previously approved HK entries and one CN-verified Guangdong range are kept,
+and foreign-registered removals are accepted. ChinaDomain admits 348 additions
+after passing its unchanged 70% resolution gate; `in.th` stays withheld.
+
+The optional `IPv6Any` overlay supports a private-profile requirement: the
+IPv4-only residential exits must never receive IPv6 requests. Profiles reject
+IPv6 literal destinations before any proxy rule unless they fall in PrivateLANIP,
+PKUIP, AppleCNIP or ChinaIP. Domain requests are unaffected because the selector
+never initiates resolution, and fake-IP traffic is unaffected because Surge
+returns no AAAA records and Mihomo's fake IPv6 pool is ULA. The overlay is not a
+routing owner and does not change the 53-list order; the guard rule and node
+details stay in the private profiles.
+
 
 The review adds 29 evidenced common service domains (Academic 16, AI 6,
 ProxyGFW 6, Microsoft 1), plus the owner's existing `pku-dasys.cn` selector in

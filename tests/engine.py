@@ -929,18 +929,19 @@ def run_selftest(verbose=True):
                   re_engine.final_rule.policy, "Final")
             # R03–R06 断言真实 conf 的叶子出口画像而不是组名（组名带线路商
             # 标识不入库）；覆盖档缺失时退化为国旗兜底，只能跳过。
+            # 2026-11-15 退役家宽 A 及其专用组后，Final/AI/社交媒体的首项改为家宽 B。
             if LOCAL_EXIT_CLASS_LOADED:
-                check("R03 Final 组递归到美国家宽 A 出口",
-                      re_engine.resolve_exit("Final")[1], "US-HOME-A")
-                check("R04 AI 组递归到美国家宽 A 出口",
-                      re_engine.resolve_exit("AI")[1], "US-HOME-A")
+                check("R03 Final 组递归到美国家宽 B 出口",
+                      re_engine.resolve_exit("Final")[1], "US-HOME-B")
+                check("R04 AI 组递归到美国家宽 B 出口",
+                      re_engine.resolve_exit("AI")[1], "US-HOME-B")
                 check("R05 Google-X-Meta-MS 组递归到美国家宽 B 出口",
                       re_engine.resolve_exit("Google-X-Meta-MS")[1], "US-HOME-B")
                 check("R05b Final 与 AI 落到同一个叶子出口组",
                       re_engine.resolve_exit("Final")[0] ==
                       re_engine.resolve_exit("AI")[0], True)
-                check("R06 社交媒体组递归到美国家宽 A 出口",
-                      re_engine.resolve_exit("社交媒体")[1], "US-HOME-A")
+                check("R06 社交媒体组递归到美国家宽 B 出口",
+                      re_engine.resolve_exit("社交媒体")[1], "US-HOME-B")
             else:
                 for _n in ("R03 Final 组出口画像", "R04 AI 组出口画像",
                            "R05 Google-X-Meta-MS 组出口画像",

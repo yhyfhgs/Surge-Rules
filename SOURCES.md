@@ -258,3 +258,32 @@ response hashes, IP registration evidence, withheld expansions and the failed
 ChinaDomain admission gate. These mutable reference pages are not claimed to be
 immutable build inputs. No configuration, provider manifest or production URL
 changes belong to this refresh.
+
+## 2026-11-21 machine-layer refresh and IPv6 guard overlay
+
+This refresh covers the two machine-managed layers and one optional overlay. No
+curated service list, list order, provider manifest or production URL changes.
+
+- **ChinaIP:** the locked blackmatrix7 input moves to `0b6897dc` (2026-10-27).
+  After the existing transforms the upstream adds 364 and removes 12 rules
+  relative to the published list. RDAP registration and complete actual
+  Country-MMDB coverage both establish CN for only five additions:
+  `45.251.248.0/23`, `160.202.210.0/23`, `2402:7da0::/32`, `2402:7e20::/32`
+  and `2402:7ee0::/32`. The other 359 are mainly overseas cloud ranges of
+  mainland providers (MMDB US, SG, HK, DE, JP, MY, PH, ID, GB); they are held back
+  as new coverage only, 374 CIDRs after carving out retained entries. Previously
+  approved `8.210.152.255/32` and `183.91.63.0/24` (fresh APNIC HK) and
+  `202.92.8.0/21` (APNIC CN, MMDB CN) stay, as does the `/48` kept on
+  2026-10-09. Foreign-registered upstream removals and removals without CN
+  evidence are accepted. Net change: +5/−8 rules.
+- **ChinaDomain:** the additions-only workflow used the same revision. The shadow
+  run resolved 590/821 new candidates (71.9%) and the apply run 592/821 (72.1%),
+  both above the unchanged 70% gate. It admitted 348 positive KEEP rows; the
+  public suffix `in.th` stays withheld. No deletion or hysteresis step ran.
+- **IPv6Any overlay:** a policy-free selector for the whole IPv6 space. Private
+  profiles use it only as the positive operand that rejects IPv6 literal
+  destinations outside LAN, campus and China. `::/0` is the fourth documented
+  non-global validator exception.
+
+`sources.lock.json` records the new ChinaIP pin and the holdback and retention
+notes with RDAP links. Per-range MMDB and RDAP results stay outside the repository.

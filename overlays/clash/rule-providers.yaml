@@ -113,3 +113,10 @@ rule-providers:
     url: https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/UKAI.list
     path: ./rule-sets/surge-rules/device-overlays/v1/UKAI.list
     interval: 86400
+  DeviceOverlayIPv6Any:
+    type: http
+    behavior: classical
+    format: text
+    url: https://cdn.jsdelivr.net/gh/yhyfhgs/surge-rules@main/overlays/clash/IPv6Any.list
+    path: ./rule-sets/surge-rules/device-overlays/v1/IPv6Any.list
+    interval: 86400
